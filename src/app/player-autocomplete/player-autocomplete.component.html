@@ -1,0 +1,11 @@
+<mat-form-field class="mat-full-width">
+    <input #searchBox type="text" placeholder="{{ placeHolder }}" aria-label="Name"
+            matInput [formControl]="playerControl" [matAutocomplete]="auto"
+            (keyup)="search(searchBox.value)">
+    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn"
+            (optionSelected)="onSelectionChanged($event)">
+      <mat-option *ngFor="let player of players$ | async" [value]="player">
+        {{player.name}}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>

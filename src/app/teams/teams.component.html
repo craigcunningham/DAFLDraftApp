@@ -1,0 +1,7 @@
+<h2>Teams</h2>
+
+<ul>
+  <li *ngFor="let team of teams">
+    <a href='rosters/{{ team.id }}'>{{ team.name }}</a>
+  </li>
+</ul>

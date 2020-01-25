@@ -1,0 +1,147 @@
+<div *ngIf="team" class="container">
+  <h2>{{team.name}}</h2>
+
+  <div *ngIf="teamRoster" class="container">
+    <table class="rosterCounts">
+      <thead>
+        <tr>
+          <td>Position</td>
+          <td>Player</td>
+          <td>Salary</td>
+          <td>Change Position</td>
+        </tr>
+      </thead>
+      <tbody>
+          <tr *ngIf="teamRoster.C">
+              <td>C</td>
+              <td><div><a href="https://www.fangraphs.com/statss.aspx?playerid={{ teamRoster.C.fangraphsId }}">{{ teamRoster.C.name }}</a></div></td>
+              <td>{{ teamRoster.C.salary }}</td>
+              <td>
+                  <span>
+                    <span title='Move Player To'
+                        (onclick)='MovePlayer(teamRoster.C.id, position)'
+                        *ngFor="let position of teamRoster.C.eligiblePositions">
+                      {{ position.position }}
+                    </span>
+                  </span>
+              </td>
+            </tr>
+            <tr *ngIf="teamRoster.First">
+                <td>1B</td>
+                <td><div>
+                  <a href="https://www.fangraphs.com/statss.aspx?playerid={{ teamRoster.First.fangraphsId }}">{{ teamRoster.First.name }}</a></div>
+                </td>
+                <td>{{ teamRoster.First.salary }}</td>
+                <td>
+                    <span>
+                      <span title='Move Player To'
+                          (onclick)='MovePlayer(teamRoster.First.id, position)'
+                          *ngFor="let position of teamRoster.First.eligiblePositions">
+                        {{ position.position }}
+                      </span>
+                    </span>
+                </td>
+                </tr>
+            <tr *ngIf="teamRoster.Second">
+                <td>2B</td>
+                <td>
+                  <div><a href="https://www.fangraphs.com/statss.aspx?playerid={{ teamRoster.Second.fangraphsId }}">{{ teamRoster.Second.name }}</a></div></td>
+                  <td>{{ teamRoster.Second.salary }}</td>
+                  <td>
+                      <span *ngIf="teamRoster.Second">
+                        <span title='Move Player To'
+                            (onclick)='MovePlayer(teamRoster.Second.id, position)'
+                            *ngFor="let position of teamRoster.Second.eligiblePositions">
+                          {{ position.position }}
+                        </span>
+                      </span>
+                  </td>
+                </tr>
+            <tr *ngIf="teamRoster.Third">
+                <td>3B</td>
+                <td><div><a href="https://www.fangraphs.com/statss.aspx?playerid={{ teamRoster.Third.fangraphsId }}">{{ teamRoster.Third.name }}</a></div></td>
+                <td>{{ teamRoster.Third.salary }}</td>
+                <td>
+                    <span *ngIf="teamRoster.Third">
+                      <span title='Move Player To'
+                          (onclick)='MovePlayer(teamRoster.Third.id, position)'
+                          *ngFor="let position of teamRoster.Third.eligiblePositions">
+                        {{ position.position }}
+                      </span>
+                    </span>
+                </td>
+              </tr>
+            <tr *ngIf="teamRoster.SS">
+                <td>SS</td>
+                <td><div><a href="https://www.fangraphs.com/statss.aspx?playerid={{ teamRoster.SS.fangraphsId }}">{{ teamRoster.SS.name }}</a></div></td>
+                <td>{{ teamRoster.SS.salary }}</td>
+                <td>
+                    <span *ngIf="teamRoster.SS">
+                      <span title='Move Player To'
+                          (onclick)='MovePlayer(teamRoster.SS.id, position)'
+                          *ngFor="let position of teamRoster.SS.eligiblePositions">
+                        {{ position.position }}
+                      </span>
+                    </span>
+                </td>
+              </tr>
+            <tr *ngIf="teamRoster.UT">
+                <td>UT</td>
+                <td><div><a href="https://www.fangraphs.com/statss.aspx?playerid={{ teamRoster.UT.fangraphsId }}">{{ teamRoster.UT.name }}</a></div></td>
+                <td>{{ teamRoster.UT.salary }}</td>
+                <td>
+                    <span *ngIf="teamRoster.UT">
+                      <span title='Move Player To'
+                          (onclick)='MovePlayer(teamRoster.UT.id, position)'
+                          *ngFor="let position of teamRoster.UT.eligiblePositions">
+                        {{ position.position }}
+                      </span>
+                    </span>
+                </td>
+              </tr>
+            <tr  *ngFor="let number of [0,1,2]">
+                <td>OF</td>
+                <td><div *ngIf="teamRoster.OF[number]"><a href="https://www.fangraphs.com/statss.aspx?playerid={{ teamRoster.OF[number].fangraphsId }}">{{ teamRoster.OF[number].name }}</a></div></td>
+                <td><span *ngIf="teamRoster.OF[number]">{{ teamRoster.OF[number].salary }}</span></td>
+                <td>
+                    <span *ngIf="teamRoster.OF[number]">
+                      <span title='Move Player To'
+                          (onclick)='MovePlayer(teamRoster.OF[number].id, position)'
+                          *ngFor="let position of teamRoster.OF[number].eligiblePositions">
+                        {{ position.position }}
+                      </span>
+                    </span>
+                </td>
+                  </tr>
+            <tr  *ngFor="let number of [0,1,2,3,4,5,6,7]">
+                <td>P</td>
+                <td><div *ngIf="teamRoster.P[number]"><a href="https://www.fangraphs.com/statss.aspx?playerid={{ teamRoster.P[number].fangraphsId }}">{{ teamRoster.P[number].name }}</a></div></td>
+                <td><div *ngIf="teamRoster.P[number]">{{ teamRoster.P[number].salary }}</div></td>
+                <td>
+                    <span *ngIf="teamRoster.P[number]">
+                      <a  title='Move Player To'
+                          (click)='MovePlayer(teamRoster.P[number].id, position)'
+                          *ngFor="let position of teamRoster.P[number].eligiblePositions">
+                        {{ position.position }}
+                      </a>
+                    </span>
+                </td>
+            </tr>
+            <tr  *ngFor="let number of [0,1,2,3,4,5,6,7]">
+                <td>B</td>
+                <td><div *ngIf="teamRoster.B[number]"><a href="https://www.fangraphs.com/statss.aspx?playerid={{ teamRoster.B[number].fangraphsId }}">{{ teamRoster.B[number].name }}</a></div></td>
+                <td><div *ngIf="teamRoster.B[number]">{{ teamRoster.B[number].salary }}</div></td>
+                <td>
+                    <span *ngIf="teamRoster.B[number]">
+                      <a class="noDecoration" title='Move Player To'
+                          (click)='MovePlayer(teamRoster.B[number].id, position)'
+                          *ngFor="let position of teamRoster.B[number].eligiblePositions">
+                        {{ position.position }}
+                      </a>
+                    </span>
+                </td>
+            </tr>
+          </tbody>
+    </table>
+  </div>
+</div>

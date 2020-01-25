@@ -1,0 +1,36 @@
+<table class="rosterCounts">
+  <thead>
+    <tr>
+      <td>Team</td>
+      <td>C</td>
+      <td>1B</td>
+      <td>2B</td>
+      <td>3B</td>
+      <td>SS</td>
+      <td>OF</td>
+      <td>UT</td>
+      <td>P</td>
+      <td>B</td>
+      <td>Players</td>
+      <td>$ Left</td>
+      <td>Max Bid</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let team of teams">
+        <td>{{team.teamName}}</td>
+        <td [class.empty]="team.C == 0">{{team.C}}</td>
+        <td [class.empty]="team.First == 0">{{team.First}}</td>
+        <td [class.empty]="team.Second == 0">{{team.Second}}</td>
+        <td [class.empty]="team.Third == 0">{{team.Third}}</td>
+        <td [class.empty]="team.SS == 0">{{team.SS}}</td>
+        <td [class.empty]="team.OF < 3">{{team.OF}}</td>
+        <td [class.empty]="team.UT == 0">{{team.UT}}</td>
+        <td [class.empty]="team.P < 8">{{team.P}}</td>
+        <td [class.empty]="team.B < 8">{{team.B}}</td>
+        <td>{{team.TotalPlayers}}</td>
+        <td>${{team.MoneyLeft}}</td>
+        <td>${{team.MaxBid}}</td>
+      </tr>
+  </tbody>
+</table>

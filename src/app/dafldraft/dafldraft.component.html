@@ -1,0 +1,52 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-5">
+          <div class="row">
+            <h4>Current Player: {{ currentPlayerName }} </h4>
+          </div>
+          <div class="row">
+            <label>Player:</label>
+            <app-player-autocomplete #playerSelecter [placeHolder]='placeHolder' (playerSelected)="playerSelected($event)"></app-player-autocomplete>
+          </div>
+          <div class="row">
+            <label>Team:</label>
+            <select id="team" #teaminput [(ngModel)]="team" (change)="teamSelected($event)">
+              <option *ngFor="let team of teams" value={{team.id}}>{{team.name}}</option>
+            </select>
+          </div>
+          <div class="row">
+              <label>Position:</label>
+              <select id="position" #positioninput [(ngModel)]="position">
+              <option *ngFor="let position of positionsForPlayer" value={{position.position}}>{{position.position}}</option>
+            </select>
+          </div>
+          <div class="row">
+              <label>Salary:</label>
+              <input type="text" value="1" id="salary" size="3" #salaryinput [(ngModel)]="salary" />
+              <label>Year:</label>
+              <input type="text" value="1" id="contract" size="3" #contractinput [(ngModel)]="contractYear" />
+          </div>
+          <div class="row">
+            <button (click)="save($event, playerSelecter, positioninput, teaminput)" #saveButton>Save</button>
+          </div>
+          <div class="row">
+            <ul *ngIf="recentAdditions">
+              <li *ngFor="let addition of recentAdditions.reverse()">
+                {{ addition.id }} - {{ addition.teamName }} - {{ addition.playerName }} - ${{ addition.salary }}
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div col-md-7>
+          <app-rostercounts #rosterCount></app-rostercounts>
+        </div>
+    <div class="row">
+      <div class="col-md-3">
+        <app-roster #rosterapp></app-roster>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-5">
+      </div>
+    </div>
+  </div>
