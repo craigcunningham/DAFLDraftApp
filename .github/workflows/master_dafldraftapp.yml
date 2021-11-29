@@ -51,4 +51,4 @@ jobs:
         with:
           app-name: 'dafldraftapp'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_CF6D148F59A14D37BF806F5C0FCD89ED }}
-          package: ./dist/dafldraftapp
+          package: .
