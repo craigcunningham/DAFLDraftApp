@@ -17,7 +17,7 @@ const httpOptions = {
 })
 export class PlayerService {
 //  private playersUrl = 'api/players';
-  private playersUrl = environment.apiUrl + '/Players';
+  private playersUrl = environment.apiUrl + '/players';
 
   getPlayers(): Observable<Player[]> {
     return this.http.get<Player[]>(this.playersUrl)
@@ -79,7 +79,7 @@ export class PlayerService {
       return of([]);
     }
     return this.http.get<Player[]>(`${this.playersUrl}/SearchByName/${term}`).pipe(
-//      tap(_ => this.log(`found players matching "${term}"`)),
+      tap(_ => this.log(`found players matching "${term}"`)),
       catchError(this.handleError<Player[]>('searchPlayers', []))
     );
   }

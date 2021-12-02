@@ -34,8 +34,8 @@ export class DafldraftComponent implements OnInit {
   recentAdditions: Array<RosterAddition>;
   selectedTeam: Team;
   placeHolder = 'Player to Add';
-  @ViewChild('rosterapp') rosterapp: any;
-  @ViewChild('rosterCount') rosterCount: any;
+  @ViewChild('rosterapp', { static: true }) rosterapp: any;
+  @ViewChild('rosterCount', { static: true }) rosterCount: any;
 
   constructor(private teamService: TeamService,
               private positionService: PositionService,
@@ -56,7 +56,7 @@ export class DafldraftComponent implements OnInit {
   }
 
   playerSelected(player: any) {
-    this.player = player.player_id;
+    this.player = player.id;
     this.currentPlayerName = player.name;
     this.positionService.getPositionsForPlayer(this.player)
     .subscribe(positions => this.SetPositionDropDown(positions));

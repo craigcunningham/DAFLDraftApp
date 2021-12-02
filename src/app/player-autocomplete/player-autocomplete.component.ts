@@ -16,7 +16,7 @@ import { MessageService } from '../message.service';
 export class PlayerAutocompleteComponent implements OnInit {
   @Input() placeHolder: string;
   @Output() playerSelected = new EventEmitter<Player>();
-  @ViewChild('searchBox') searchBox: ElementRef;
+  @ViewChild('searchBox', { static: true }) searchBox: ElementRef;
 
   players$: Observable<Player[]>;
   private searchTerms = new Subject<String>();

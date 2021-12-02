@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TeamsComponent } from './teams/teams.component';
 import { AppRoutingModule } from './app-routing.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpClientXsrfModule, HttpClientJsonpModule } from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { DafldraftComponent } from './dafldraft/dafldraft.component';
 import { PlayerAutocompleteComponent } from './player-autocomplete/player-autocomplete.component';
@@ -30,7 +30,7 @@ import { AllrostersComponent } from './allrosters/allrosters.component';
 import { TeamplayersComponent } from './teamplayers/teamplayers.component';
 import { PurchasedPlayersComponent } from './purchased-players/purchased-players.component';
 import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
-
+//import { HttpXSRFInterceptor } from './_providers';
 
 @NgModule({
   declarations: [
@@ -50,6 +50,12 @@ import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
     FormsModule,
     AppRoutingModule,
     HttpClientModule,
+    HttpClientXsrfModule.withOptions({
+      cookieName: 'csrftoken',
+      headerName: 'X-CSRFToken'
+    }) ,
+    //HttpXSRFInterceptor,
+    HttpClientJsonpModule,
     MatInputModule,
     MatButtonModule,
     MatCheckboxModule,

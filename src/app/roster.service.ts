@@ -8,8 +8,12 @@ import { catchError, tap } from 'rxjs/operators';
 import { MessageService } from './message.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { RosterAddition } from './rosterAddition';
+import { environment } from '../environments/environment';
 
 const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json'})
+};
+const httpOptionsPost = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json'})
 };
 
@@ -17,17 +21,21 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class RosterService {
-  private rosterUrl = 'http://localhost:8000/Rosters';
+  //private rosterUrl = 'http://localhost:8000/Rosters';
+  private rosterUrl = environment.apiUrl + '/rosters';
 
   constructor(private http: HttpClient, private messageService: MessageService) { }
 
+  /*
   getRoster(id: number): Observable<Roster> {
     const url = `${this.rosterUrl}/${id}`;
     return this.http.get<Roster>(url);
   }
+  */
 
   getTeamRoster(teamid: number): Observable<TeamRoster> {
-    const url = `${this.rosterUrl}/TeamRoster/${teamid}`;
+    // const url = `${this.rosterUrl}/TeamRoster/${teamid}`;
+    const url = `${this.rosterUrl}/${teamid}`;
     return this.http.get<TeamRoster>(url);
   }
 
@@ -47,6 +55,11 @@ export class RosterService {
     team_id: team, salary: salary, contract_year: contractYear,
     time_drafted: dateToAdd, position: position};
 
+    //return this.http.post<Roster>("http://127.0.0.1:8000/rosters",
+    //return this.http.post<Roster>(this.rosterUrl,
+    //                  //{id: 0, player_id: 1, team_id: 1, salary: 1, contract_year: 1, position: 'C'},
+    //                  roster,
+    //                  {headers: new HttpHeaders({'Content-Type': 'application/json'})});
     return this.http.post<Roster>(this.rosterUrl, roster, httpOptions);
   }
 
