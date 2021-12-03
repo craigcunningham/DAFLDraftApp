@@ -27,7 +27,7 @@
               <input type="text" value="1" id="contract" size="3" #contractinput [(ngModel)]="contractYear" />
           </div>
           <div class="row">
-            <button (click)="save($event, playerSelecter, positioninput, teaminput)" #saveButton>Save</button>
+            <button (click)="save($event, playerSelecter, positioninput)" #saveButton>Save</button>
           </div>
           <div class="row">
             <ul *ngIf="recentAdditions">
