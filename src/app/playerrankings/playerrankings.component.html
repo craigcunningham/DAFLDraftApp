@@ -38,38 +38,38 @@
               </tr>
             </tbody>
           </table>
-          <table class="table">
-            <caption style="caption-side: top; text-align: center;"><h2>Pitchers</h2></caption>
-            <thead>
-              <tr>
-                <th>Rank</th>
-                <th>Player</th>
-                <th>ADP</th>
-                <th>Eligible</th>
-                <th>IP</th>
-                <th>Wins</th>
-                <th>ERA</th>
-                <th>SO</th>
-                <th>Saves</th>
-                <th>Holds</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let player of pitcherRanking; let i = index" [ngClass]="{'protected': player.protect == 1}">
-                <td>{{ i + 1 }}</td>
-                <td>{{ player.playerName }}</td>
-                <td>{{ player.adp }}</td>
-                <td>{{ player.eligible }}</td>
-                <td>{{ player.ip }}</td>
-                <td>{{ player.w }}</td>
-                <td>{{ player.era }}</td>
-                <td>{{ player.so }}</td>
-                <td>{{ player.sv }}</td>
-                <td>{{ player.holds }}</td>
-              </tr>
-            </tbody>
-          </table>
         </div>
+        <table class="table">
+          <caption style="caption-side: top; text-align: center;"><h2>Pitchers</h2></caption>
+          <thead>
+            <tr>
+              <th>Rank</th>
+              <th>Player</th>
+              <th>ADP</th>
+              <th>Eligible</th>
+              <th>IP</th>
+              <th>Wins</th>
+              <th>ERA</th>
+              <th>SO</th>
+              <th>Saves</th>
+              <th>Holds</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let player of pitcherRanking; let i = index" [ngClass]="{'protected': player.protect == 1}">
+              <td>{{ i + 1 }}</td>
+              <td>{{ player.playerName }}</td>
+              <td>{{ player.adp }}</td>
+              <td>{{ player.eligible }}</td>
+              <td>{{ player.ip }}</td>
+              <td>{{ player.w }}</td>
+              <td>{{ player.era }}</td>
+              <td>{{ player.so }}</td>
+              <td>{{ player.sv }}</td>
+              <td>{{ player.holds }}</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
 
