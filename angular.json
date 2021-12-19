@@ -131,5 +131,8 @@
       }
     }
   },
-  "defaultProject": "DAFLDraft"
+  "defaultProject": "DAFLDraft",
+  "cli": {
+    "analytics": "657f490b-8561-42d1-be8a-ae896c0ae387"
+  }
 }

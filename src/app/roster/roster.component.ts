@@ -4,7 +4,7 @@ import { Team } from '../team';
 import { Player } from '../player';
 import { Position } from '../position';
 import { TeamService } from '../team.service';
-import { RosterService } from '../roster.service'
+import { RosterService } from '../roster.service';
 import { TeamRoster } from '../teamroster';
 import { PlayerService } from '../player.service';
 import { PositionService } from '../position.service';
@@ -31,8 +31,8 @@ export class RosterComponent implements OnInit {
       this.positionService.getPositionsForPlayer(player.id)
       .subscribe(positions => player.eligiblePositions = positions);
 
-      //this.playerService.GetSalary(player.id)
-      //.subscribe(salary => player.salary = salary)
+      // this.playerService.GetSalary(player.id)
+      // .subscribe(salary => player.salary = salary)
     });
 
     switch(position) {

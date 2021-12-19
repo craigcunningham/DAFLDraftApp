@@ -5,8 +5,8 @@ import { catchError, map, tap } from 'rxjs/operators';
 
 import { environment } from '../environments/environment';
 import { Player } from './player';
+import { HitterRanking, PitcherRanking } from './ranking';
 import { MessageService } from './message.service';
-import { containerRefreshStart } from '@angular/core/src/render3/instructions';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json'})
@@ -16,8 +16,7 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class PlayerService {
-//  private playersUrl = 'api/players';
-  private playersUrl = environment.apiUrl + '/Players';
+  private playersUrl = environment.apiUrl + 'Players';
 
   getPlayers(): Observable<Player[]> {
     return this.http.get<Player[]>(this.playersUrl)
@@ -48,7 +47,15 @@ export class PlayerService {
     return this.http.get<number>(url);
   }
 
+  GetHitterRankings() {
+    const url = `${this.playersUrl}/HitterRankings`;
+    return this.http.get<HitterRanking[]>(url);
+  }
 
+  GetPitcherRankings() {
+    const url = `${this.playersUrl}/PitcherRankings`;
+    return this.http.get<PitcherRanking[]>(url);
+  }
 
   updatePlayer(player: Player): Observable<any> {
     return this.http.put(this.playersUrl, player, httpOptions).pipe(
@@ -79,7 +86,7 @@ export class PlayerService {
       return of([]);
     }
     return this.http.get<Player[]>(`${this.playersUrl}/SearchByName/${term}`).pipe(
-//      tap(_ => this.log(`found players matching "${term}"`)),
+      tap(_ => this.log(`found players matching "${term}"`)),
       catchError(this.handleError<Player[]>('searchPlayers', []))
     );
   }

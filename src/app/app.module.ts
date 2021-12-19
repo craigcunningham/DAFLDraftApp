@@ -30,6 +30,9 @@ import { AllrostersComponent } from './allrosters/allrosters.component';
 import { TeamplayersComponent } from './teamplayers/teamplayers.component';
 import { PurchasedPlayersComponent } from './purchased-players/purchased-players.component';
 import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
+import { ProtectionListComponent } from './protection-list/protection-list.component';
+import { EndofseasonrosterComponent } from './endofseasonroster/endofseasonroster.component';
+import { PlayerrankingsComponent } from './playerrankings/playerrankings.component';
 
 
 @NgModule({
@@ -43,7 +46,10 @@ import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
     RostercountsComponent,
     AllrostersComponent,
     TeamplayersComponent,
-    PurchasedPlayersComponent
+    PurchasedPlayersComponent,
+    ProtectionListComponent,
+    EndofseasonrosterComponent,
+    PlayerrankingsComponent
   ],
   imports: [
     BrowserModule,
@@ -63,8 +69,8 @@ import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
     MatCardModule,
     MatDatepickerModule,
     MatSelectModule,
-    ReactiveFormsModule,
-    DropDownsModule
+    ReactiveFormsModule
+    //DropDownsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

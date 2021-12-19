@@ -79,7 +79,7 @@ export class DafldraftComponent implements OnInit {
     newRosterAddition.salary = salary;
     newRosterAddition.id = id;
 
-    if(this.recentAdditions.length === 10) {
+    if (this.recentAdditions.length === 10) {
       this.recentAdditions = this.recentAdditions.slice(1, 10);
     }
     this.recentAdditions.push(newRosterAddition);

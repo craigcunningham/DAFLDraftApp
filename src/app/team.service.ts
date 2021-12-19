@@ -3,12 +3,13 @@ import { Team } from './team';
 import { Observable, of } from 'rxjs';
 import { MessageService } from './message.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { environment } from './../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TeamService {
-  private teamsUrl = 'http://localhost:8000/Teams';
+  private teamsUrl = environment.apiUrl + 'Teams';
 
   constructor(private http: HttpClient, private messageService: MessageService) { }
 

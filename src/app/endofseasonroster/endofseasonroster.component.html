@@ -1,0 +1,24 @@
+<label>Count:</label><span>{{ protectedCount }}</span><br/>
+<label>Protected Salary:</label><span>{{ protectedSalary }}</span>
+<table class="table" *ngIf="roster">
+  <thead>
+    <tr>
+      <th>Player</th>
+      <th>ADP</th>
+      <th>Eligible</th>
+      <th>Salary</th>
+      <th>Contract</th>
+      <th>Protect</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let player of roster">
+      <td>{{ player.name }}</td>
+      <td>{{ player.adp }}</td>
+      <td>{{ player.eligible }}</td>
+      <td>{{ player.new_salary }}</td>
+      <td>{{ player.new_contract }}</td>
+      <td><input type="checkbox" [value]="player.player_id" (change)="onProtectChange($event)" [checked]="player.protect" /></td>
+    </tr>
+  </tbody>
+</table>

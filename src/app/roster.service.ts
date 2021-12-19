@@ -8,6 +8,7 @@ import { catchError, tap } from 'rxjs/operators';
 import { MessageService } from './message.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { RosterAddition } from './rosterAddition';
+import { environment } from './../environments/environment';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json'})
@@ -17,7 +18,7 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class RosterService {
-  private rosterUrl = 'http://localhost:8000/Rosters';
+  private rosterUrl = environment.apiUrl + 'Rosters';
 
   constructor(private http: HttpClient, private messageService: MessageService) { }
 

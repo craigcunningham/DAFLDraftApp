@@ -1,0 +1,78 @@
+<style>
+  .protected { text-decoration: line-through; background-color: dimgray; }
+</style>
+<div class="container">
+
+  <div class="row">
+    <div class="col-12">
+      <div *ngIf="rankings">
+        <div class="row" *ngFor="let pos of ['C', '1B', '2B', '3B', 'SS', 'OF', 'U']">
+          <table class="table">
+            <caption style="caption-side: top; text-align: center;"><h2>{{ pos }}</h2></caption>
+            <thead>
+              <tr>
+                <th>Rank</th>
+                <th>Player</th>
+                <th>ADP</th>
+                <th>Eligible</th>
+                <th>AB</th>
+                <th>AVG</th>
+                <th>HR</th>
+                <th>RBI</th>
+                <th>Runs</th>
+                <th>SB</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let player of positionalRanking[pos]; let i = index" [ngClass]="{'protected': player.protect == 1}">
+                <td>{{ i + 1 }}</td>
+                <td>{{ player.playerName }}</td>
+                <td>{{ player.adp }}</td>
+                <td>{{ player.eligible }}</td>
+                <td>{{ player.ab }}</td>
+                <td>{{ player.avg }}</td>
+                <td>{{ player.hr }}</td>
+                <td>{{ player.rbi }}</td>
+                <td>{{ player.r }}</td>
+                <td>{{ player.sb }}</td>
+              </tr>
+            </tbody>
+          </table>
+          <table class="table">
+            <caption style="caption-side: top; text-align: center;"><h2>Pitchers</h2></caption>
+            <thead>
+              <tr>
+                <th>Rank</th>
+                <th>Player</th>
+                <th>ADP</th>
+                <th>Eligible</th>
+                <th>IP</th>
+                <th>Wins</th>
+                <th>ERA</th>
+                <th>SO</th>
+                <th>Saves</th>
+                <th>Holds</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let player of pitcherRanking; let i = index" [ngClass]="{'protected': player.protect == 1}">
+                <td>{{ i + 1 }}</td>
+                <td>{{ player.playerName }}</td>
+                <td>{{ player.adp }}</td>
+                <td>{{ player.eligible }}</td>
+                <td>{{ player.ip }}</td>
+                <td>{{ player.w }}</td>
+                <td>{{ player.era }}</td>
+                <td>{{ player.so }}</td>
+                <td>{{ player.sv }}</td>
+                <td>{{ player.holds }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
