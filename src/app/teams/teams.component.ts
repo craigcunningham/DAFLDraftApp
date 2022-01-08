@@ -9,7 +9,7 @@ import { TeamService } from '../team.service';
 })
 export class TeamsComponent implements OnInit {
   teams: Team[];
-  constructor(private teamService:TeamService) { }
+  constructor(private teamService: TeamService) { }
 
   ngOnInit() {
     this.teamService.getTeams()

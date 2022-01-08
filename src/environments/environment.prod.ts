@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'http://dafldraftapi.azurewebsites.net/public/'
+  apiUrl: 'https://dafldraftapi.azurewebsites.net/public/'
 };
