@@ -8,7 +8,7 @@ import { ProtectionListComponent } from './protection-list/protection-list.compo
 import { PlayerrankingsComponent } from './playerrankings/playerrankings.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'dafldraft', pathMatch: 'full' }, // dafldraft
+  { path: '', redirectTo: 'dafldraft', pathMatch: 'full' },
   { path: 'rosters/:id', component: RosterComponent },
   { path: 'teams', component: TeamsComponent },
   { path: 'dafldraft', component: DafldraftComponent },

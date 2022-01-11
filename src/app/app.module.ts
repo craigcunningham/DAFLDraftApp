@@ -22,7 +22,8 @@ import {
   MatIconModule,
   MatCardModule,
   MatSelectModule,
-  MatInputModule,
+    MatToolbarModule,
+    MatInputModule,
   MatSelect} from '@angular/material';
 import { RosterComponent } from './roster/roster.component';
 import { RostercountsComponent } from './rostercounts/rostercounts.component';
@@ -68,9 +69,10 @@ import { PlayerrankingsComponent } from './playerrankings/playerrankings.compone
     MatIconModule,
     MatCardModule,
     MatDatepickerModule,
+    MatToolbarModule,
     MatSelectModule,
     ReactiveFormsModule
-    //DropDownsModule
+    // DropDownsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

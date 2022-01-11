@@ -4,5 +4,18 @@
     DAFL Draft
   </h1>
 </div>
+<mat-toolbar>
+  <mat-toolbar-row>
+    <span class="menu-spacer"></span>
+    <div>
+      <a mat-button [routerLink]="'/teams'"> Teams </a>
+      <a mat-button [routerLink]="'/dafldraft'"> Draft </a>
+      <a mat-button [routerLink]="'/rankings'"> Rankings </a>
+      <a mat-button [routerLink]="'/protection-list'"> Protection Lists </a>
+
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>
+
 <router-outlet></router-outlet>
 
