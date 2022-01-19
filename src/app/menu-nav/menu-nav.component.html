@@ -1,0 +1,12 @@
+<mat-toolbar *ngIf='user'>
+  <mat-toolbar-row>
+    <div>
+      <a mat-button [routerLink]="'/teams'" *appCheckPermission="'Admin'"> Teams </a>
+      <a mat-button [routerLink]="'/dafldraft'" *appCheckPermission="'Admin'"> Draft </a>
+      <a mat-button [routerLink]="'/rankings'" *appCheckPermission="'Admin'"> Rankings </a>
+      <a mat-button [routerLink]="'/protection-list'" *appCheckPermission="'Admin'"> Protection Lists </a>
+      <a mat-button [routerLink]="'/my-roster/'" *appCheckPermission="'Team'"> My Roster </a>
+      <a mat-button [routerLink]="'/my-protection-list'" *appCheckPermission="'Team'"> My Protection List </a>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>

@@ -16,4 +16,7 @@ export class TeamService {
   getTeams(): Observable<Team[]> {
     return this.http.get<Team[]>(this.teamsUrl);
   }
+  getTeam(teamid: number): Observable<Team> {
+    return this.http.get<Team>(this.teamsUrl + '/' + teamid);
+  }
 }

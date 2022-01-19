@@ -6,10 +6,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TeamsComponent } from './teams/teams.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DafldraftComponent } from './dafldraft/dafldraft.component';
 import { PlayerAutocompleteComponent } from './player-autocomplete/player-autocomplete.component';
 import { TeamAutocompleteComponent } from './team-autocomplete/team-autocomplete.component';
+import { CheckPermissionDirective } from './services/permission-directive';
+
 import {
   MatButtonModule,
   MatCheckboxModule,
@@ -24,16 +26,23 @@ import {
   MatSelectModule,
     MatToolbarModule,
     MatInputModule,
-  MatSelect} from '@angular/material';
+    MatDividerModule,
+  MatSelect,
+  MatDivider} from '@angular/material';
 import { RosterComponent } from './roster/roster.component';
 import { RostercountsComponent } from './rostercounts/rostercounts.component';
 import { AllrostersComponent } from './allrosters/allrosters.component';
 import { TeamplayersComponent } from './teamplayers/teamplayers.component';
 import { PurchasedPlayersComponent } from './purchased-players/purchased-players.component';
-import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
+// import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
 import { ProtectionListComponent } from './protection-list/protection-list.component';
 import { EndofseasonrosterComponent } from './endofseasonroster/endofseasonroster.component';
 import { PlayerrankingsComponent } from './playerrankings/playerrankings.component';
+import { UserService } from './services/user.service';
+import { LoginComponent } from './login/login.component';
+import { MenuNavComponent } from './menu-nav/menu-nav.component';
+import { MyProtectionListComponent } from './my-protectionlist/my-protectionlist.component';
+import { MyRosterComponent } from './my-roster/my-roster.component';
 
 
 @NgModule({
@@ -50,7 +59,12 @@ import { PlayerrankingsComponent } from './playerrankings/playerrankings.compone
     PurchasedPlayersComponent,
     ProtectionListComponent,
     EndofseasonrosterComponent,
-    PlayerrankingsComponent
+    PlayerrankingsComponent,
+    LoginComponent,
+    CheckPermissionDirective,
+    MenuNavComponent,
+    MyProtectionListComponent,
+    MyRosterComponent
   ],
   imports: [
     BrowserModule,
@@ -71,10 +85,10 @@ import { PlayerrankingsComponent } from './playerrankings/playerrankings.compone
     MatDatepickerModule,
     MatToolbarModule,
     MatSelectModule,
-    ReactiveFormsModule
-    // DropDownsModule
+    ReactiveFormsModule,
+    MatDividerModule,
   ],
-  providers: [],
+  providers: [UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

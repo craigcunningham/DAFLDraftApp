@@ -1,0 +1,13 @@
+<div class="container" *ngIf="selectedTeam">
+  <div class="row">
+    <div class="col-12">
+      <label>Team:</label>
+      <span>{{ selectedTeam.name }}</span>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+        <app-endofseasonroster #endofseasonroster [teamid]="selectedTeam.id"></app-endofseasonroster>
+    </div>
+  </div>
+</div>

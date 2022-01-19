@@ -1,5 +1,5 @@
 <style>
-  .protected { text-decoration: line-through; background-color: dimgray; }
+  .protected { background-color: dimgray; }
 </style>
 <div class="container">
 
@@ -26,7 +26,12 @@
             <tbody>
               <tr *ngFor="let player of positionalRanking[pos]; let i = index" [ngClass]="{'protected': player.protect == 1}">
                 <td>{{ i + 1 }}</td>
-                <td>{{ player.playerName }}</td>
+                <td>
+                  <a href="https://www.fangraphs.com/players/{{ player.fangraphs_name }}/{{ player.fangraphs_id }}/stats" class="btn btn-success btn-sm">FG</a>
+                  &nbsp;&nbsp;<a href="https://dafl.baseball.cbssports.com/players/playerpage/{{ player.cbs_id }}/" class="btn btn-primary btn-sm">CBS</a>
+                  &nbsp;&nbsp;
+                  {{ player.playerName }}
+                </td>
                 <td>{{ player.adp }}</td>
                 <td>{{ player.eligible }}</td>
                 <td>{{ player.ab }}</td>

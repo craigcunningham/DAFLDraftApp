@@ -16,6 +16,8 @@ export class PitcherRanking {
   player_id: number;
   playerName: string;
   fangraphs_id: number;
+  fangraphs_name: string;
+  cbs_id: string;
   eligible: string;
   adp: number;
   w: number;

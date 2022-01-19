@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Team } from '../team';
 import { TeamService } from '../team.service';
+import {MatDividerModule} from '@angular/material/divider';
 
 @Component({
   selector: 'app-teams',

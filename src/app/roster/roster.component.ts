@@ -35,7 +35,7 @@ export class RosterComponent implements OnInit {
       // .subscribe(salary => player.salary = salary)
     });
 
-    switch(position) {
+    switch (position) {
       case 'C': {
         this.teamRoster.C = players[0];
         break;

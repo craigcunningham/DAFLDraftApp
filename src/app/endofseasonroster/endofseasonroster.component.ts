@@ -1,10 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Team } from '../team';
-import { TeamService } from '../team.service';
 import { ProtectionListService } from '../protection-list.service';
 import { ProtectionList } from '../ProtectionList';
-import { listenerCount } from 'process';
-import { analyzeAndValidateNgModules } from '@angular/compiler';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-endofseasonroster',
@@ -13,19 +10,19 @@ import { analyzeAndValidateNgModules } from '@angular/compiler';
 })
 export class EndofseasonrosterComponent implements OnInit {
   roster: ProtectionList[];
-  teamid: number;
   protectedCount: number;
   protectedSalary: number;
   addPlayerSalary: number;
   actionedPlayer: ProtectionList;
+  @Input() teamid: number;
 
-  constructor(private protectionListService: ProtectionListService) { }
+  constructor(private protectionListService: ProtectionListService, private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.loadData(this.teamid);
   }
 
   loadData(teamid: number) {
-    this.teamid = teamid;
     this.protectionListService.getListForTeam(teamid)
     .subscribe(list => this.setStuff(list));
   }
