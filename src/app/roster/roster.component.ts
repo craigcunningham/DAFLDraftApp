@@ -101,7 +101,13 @@ loadData(teamid: number) {
 
 }
   ngOnInit() {
-    const id = +this.route.snapshot.paramMap.get('id');
+    let id = 0;
+    if (+this.route.snapshot.paramMap.get('id')) {
+      id = +this.route.snapshot.paramMap.get('id');
+    } else {
+      id = 10;
+    }
+    console.log('id: ' + id);
     this.teamid = id;
     this.loadData(this.teamid);
   }

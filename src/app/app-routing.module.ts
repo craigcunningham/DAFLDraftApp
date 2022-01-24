@@ -16,7 +16,7 @@ const routes: Routes = [
   { path: 'rosters/:id', component: RosterComponent },
   { path: 'teams', component: TeamsComponent, canActivate: [AuthorizeGuard] },
   { path: 'dafldraft', component: DafldraftComponent, canActivate: [AuthorizeGuard] },
-  { path: 'rosters', component: RosterComponent, canActivate: [AuthorizeGuard] },
+  { path: 'rosters', component: RosterComponent },
   { path: 'rankings', component: PlayerrankingsComponent, canActivate: [AuthorizeGuard]  },
   { path: 'protection-list', component: ProtectionListComponent, canActivate: [AuthorizeGuard]  },
   { path: 'my-protection-list', component: MyProtectionListComponent },

@@ -10,6 +10,9 @@ export class ProtectionList {
   OldContract: number;
   Protect: number;
   ADP: number;
+  fangraphs_id: string;
+  cbs_id: string;
+  fangraphs_name: string;
 
   constructor() { }
 }

@@ -14,7 +14,12 @@
       <tbody>
           <tr *ngIf="teamRoster.C">
               <td>C</td>
-              <td><div><a href="https://www.fangraphs.com/statss.aspx?playerid={{ teamRoster.C.fangraphsId }}">{{ teamRoster.C.name }}</a></div></td>
+              <td><div>
+                <a href="https://www.fangraphs.com/players/{{ teamRoster.C.fangraphs_name }}/{{ teamRoster.C.fangraphsId }}/stats" class="btn btn-success btn-sm">FG</a>
+                &nbsp;<a href="https://dafl.baseball.cbssports.com/players/playerpage/{{ teamRoster.C.cbs_id }}/" class="btn btn-primary btn-sm">CBS</a>
+                &nbsp;
+              {{ teamRoster.C.name }}
+              </div></td>
               <td>{{ teamRoster.C.salary }}</td>
               <td>
                   <span>
@@ -29,7 +34,10 @@
             <tr *ngIf="teamRoster.First">
                 <td>1B</td>
                 <td><div>
-                  <a href="https://www.fangraphs.com/statss.aspx?playerid={{ teamRoster.First.fangraphsId }}">{{ teamRoster.First.name }}</a></div>
+                  <a href="https://www.fangraphs.com/players/{{ teamRoster.First.fangraphs_name }}/{{ teamRoster.First.fangraphsId }}/stats" class="btn btn-success btn-sm">FG</a>
+                  &nbsp;<a href="https://dafl.baseball.cbssports.com/players/playerpage/{{ teamRoster.First.cbs_id }}/" class="btn btn-primary btn-sm">CBS</a>
+                  &nbsp;
+                  {{ teamRoster.First.name }}</div>
                 </td>
                 <td>{{ teamRoster.First.salary }}</td>
                 <td>
@@ -45,7 +53,11 @@
             <tr *ngIf="teamRoster.Second">
                 <td>2B</td>
                 <td>
-                  <div><a href="https://www.fangraphs.com/statss.aspx?playerid={{ teamRoster.Second.fangraphsId }}">{{ teamRoster.Second.name }}</a></div></td>
+                  <div>
+                    <a href="https://www.fangraphs.com/players/{{ teamRoster.Second.fangraphs_name }}/{{ teamRoster.Second.fangraphsId }}/stats" class="btn btn-success btn-sm">FG</a>
+                    &nbsp;<a href="https://dafl.baseball.cbssports.com/players/playerpage/{{ teamRoster.Second.cbs_id }}/" class="btn btn-primary btn-sm">CBS</a>
+                    &nbsp;
+                    {{ teamRoster.Second.name }}</div></td>
                   <td>{{ teamRoster.Second.salary }}</td>
                   <td>
                       <span *ngIf="teamRoster.Second">
@@ -59,7 +71,10 @@
                 </tr>
             <tr *ngIf="teamRoster.Third">
                 <td>3B</td>
-                <td><div><a href="https://www.fangraphs.com/statss.aspx?playerid={{ teamRoster.Third.fangraphsId }}">{{ teamRoster.Third.name }}</a></div></td>
+                <td><div>
+                  <a href="https://www.fangraphs.com/players/{{ teamRoster.Third.fangraphs_name }}/{{ teamRoster.Third.fangraphsId }}/stats" class="btn btn-success btn-sm">FG</a>
+                  &nbsp;<a href="https://dafl.baseball.cbssports.com/players/playerpage/{{ teamRoster.Third.cbs_id }}/" class="btn btn-primary btn-sm">CBS</a>
+                  &nbsp;{{ teamRoster.Third.name }}</div></td>
                 <td>{{ teamRoster.Third.salary }}</td>
                 <td>
                     <span *ngIf="teamRoster.Third">
@@ -73,7 +88,10 @@
               </tr>
             <tr *ngIf="teamRoster.SS">
                 <td>SS</td>
-                <td><div><a href="https://www.fangraphs.com/statss.aspx?playerid={{ teamRoster.SS.fangraphsId }}">{{ teamRoster.SS.name }}</a></div></td>
+                <td><div>
+                  <a href="https://www.fangraphs.com/players/{{ teamRoster.SS.fangraphs_name }}/{{ teamRoster.SS.fangraphsId }}/stats" class="btn btn-success btn-sm">FG</a>
+                  &nbsp;<a href="https://dafl.baseball.cbssports.com/players/playerpage/{{ teamRoster.SS.cbs_id }}/" class="btn btn-primary btn-sm">CBS</a>
+                  &nbsp;{{ teamRoster.SS.name }}</div></td>
                 <td>{{ teamRoster.SS.salary }}</td>
                 <td>
                     <span *ngIf="teamRoster.SS">
@@ -87,7 +105,10 @@
               </tr>
             <tr *ngIf="teamRoster.UT">
                 <td>UT</td>
-                <td><div><a href="https://www.fangraphs.com/statss.aspx?playerid={{ teamRoster.UT.fangraphsId }}">{{ teamRoster.UT.name }}</a></div></td>
+                <td><div>
+                  <a href="https://www.fangraphs.com/players/{{ teamRoster.UT.fangraphs_name }}/{{ teamRoster.UT.fangraphsId }}/stats" class="btn btn-success btn-sm">FG</a>
+                  &nbsp;<a href="https://dafl.baseball.cbssports.com/players/playerpage/{{ teamRoster.UT.cbs_id }}/" class="btn btn-primary btn-sm">CBS</a>
+                  &nbsp;{{ teamRoster.UT.name }}</div></td>
                 <td>{{ teamRoster.UT.salary }}</td>
                 <td>
                     <span *ngIf="teamRoster.UT">
@@ -101,7 +122,10 @@
               </tr>
             <tr  *ngFor="let number of [0,1,2]">
                 <td>OF</td>
-                <td><div *ngIf="teamRoster.OF[number]"><a href="https://www.fangraphs.com/statss.aspx?playerid={{ teamRoster.OF[number].fangraphsId }}">{{ teamRoster.OF[number].name }}</a></div></td>
+                <td><div *ngIf="teamRoster.OF[number]">
+                  <a href="https://www.fangraphs.com/players/{{ teamRoster.OF[number].fangraphs_name }}/{{ teamRoster.OF[number].fangraphsId }}/stats" class="btn btn-success btn-sm">FG</a>
+                  &nbsp;<a href="https://dafl.baseball.cbssports.com/players/playerpage/{{ teamRoster.OF[number].cbs_id }}/" class="btn btn-primary btn-sm">CBS</a>
+                  &nbsp;{{ teamRoster.OF[number].name }}</div></td>
                 <td><span *ngIf="teamRoster.OF[number]">{{ teamRoster.OF[number].salary }}</span></td>
                 <td>
                     <span *ngIf="teamRoster.OF[number]">
@@ -115,7 +139,10 @@
                   </tr>
             <tr  *ngFor="let number of [0,1,2,3,4,5,6,7]">
                 <td>P</td>
-                <td><div *ngIf="teamRoster.P[number]"><a href="https://www.fangraphs.com/statss.aspx?playerid={{ teamRoster.P[number].fangraphsId }}">{{ teamRoster.P[number].name }}</a></div></td>
+                <td><div *ngIf="teamRoster.P[number]">
+                  <a href="https://www.fangraphs.com/players/{{ teamRoster.P[number].fangraphs_name }}/{{ teamRoster.P[number].fangraphsId }}/stats" class="btn btn-success btn-sm">FG</a>
+                  &nbsp;<a href="https://dafl.baseball.cbssports.com/players/playerpage/{{ teamRoster.P[number].cbs_id }}/" class="btn btn-primary btn-sm">CBS</a>
+                  &nbsp;{{ teamRoster.P[number].name }}</div></td>
                 <td><div *ngIf="teamRoster.P[number]">{{ teamRoster.P[number].salary }}</div></td>
                 <td>
                     <span *ngIf="teamRoster.P[number]">
@@ -129,7 +156,10 @@
             </tr>
             <tr  *ngFor="let number of [0,1,2,3,4,5,6,7]">
                 <td>B</td>
-                <td><div *ngIf="teamRoster.B[number]"><a href="https://www.fangraphs.com/statss.aspx?playerid={{ teamRoster.B[number].fangraphsId }}">{{ teamRoster.B[number].name }}</a></div></td>
+                <td><div *ngIf="teamRoster.B[number]">
+                  <a href="https://www.fangraphs.com/players/{{ teamRoster.B[number].fangraphs_name }}/{{ teamRoster.B[number].fangraphsId }}/stats" class="btn btn-success btn-sm">FG</a>
+                  &nbsp;<a href="https://dafl.baseball.cbssports.com/players/playerpage/{{ teamRoster.B[number].cbs_id }}/" class="btn btn-primary btn-sm">CBS</a>
+                  &nbsp;{{ teamRoster.B[number].name }}</div></td>
                 <td><div *ngIf="teamRoster.B[number]">{{ teamRoster.B[number].salary }}</div></td>
                 <td>
                     <span *ngIf="teamRoster.B[number]">

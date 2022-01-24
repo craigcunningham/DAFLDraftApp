@@ -1,5 +1,5 @@
-<label>Count:</label><span>{{ protectedCount }}</span><br/>
-<label>Protected Salary:</label><span>{{ protectedSalary }}</span>
+<h4><label>Count:</label><span>{{ protectedCount }}</span></h4>
+<h4><label>Protected Salary:</label><span>{{ protectedSalary }}</span></h4>
 <table class="table" *ngIf="roster">
   <thead>
     <tr>
@@ -13,7 +13,13 @@
   </thead>
   <tbody>
     <tr *ngFor="let player of roster">
-      <td>{{ player.name }}</td>
+      <td>
+        <a href="https://www.fangraphs.com/players/{{ player.fangraphs_name }}/{{ player.fangraphs_id }}/stats" class="btn btn-success btn-sm">FG</a>
+        &nbsp;&nbsp;
+        <a href="https://dafl.baseball.cbssports.com/players/playerpage/{{ player.cbs_id }}/" class="btn btn-primary btn-sm">CBS</a>
+        &nbsp;&nbsp;
+        {{ player.name }}
+      </td>
       <td>{{ player.adp }}</td>
       <td>{{ player.eligible }}</td>
       <td>{{ player.new_salary }}</td>

@@ -23,6 +23,7 @@ export class EndofseasonrosterComponent implements OnInit {
   }
 
   loadData(teamid: number) {
+    this.teamid = teamid;
     this.protectionListService.getListForTeam(teamid)
     .subscribe(list => this.setStuff(list));
   }

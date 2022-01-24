@@ -7,4 +7,6 @@ export class Player {
   salary: number;
   pitcherInd: string;
   eligiblePositions: Position[];
+  cbs_id: string;
+  fangraphs_name: string;
 }

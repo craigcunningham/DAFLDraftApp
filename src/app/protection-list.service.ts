@@ -34,7 +34,10 @@ export class ProtectionListService {
       new_contract: 0,
       OldSalary: 0,
       OldContract: 0,
-      ADP: 0
+      ADP: 0,
+      fangraphs_id: '',
+      cbs_id: '',
+      fangraphs_name: '',
     };
     return this.http.post<ProtectionList>(url, protection, httpOptions).subscribe(r => {});
   }
@@ -52,7 +55,10 @@ export class ProtectionListService {
       new_contract: 0,
       OldSalary: 0,
       OldContract: 0,
-      ADP: 0
+      ADP: 0,
+      fangraphs_id: '',
+      cbs_id: '',
+      fangraphs_name: '',
     };
 
     return this.http.post<ProtectionList>(url, protection, httpOptions).subscribe(r => {});
