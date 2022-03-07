@@ -2,7 +2,17 @@
   .protected { background-color: dimgray; }
 </style>
 <div class="container">
-
+  <div class="row">
+    <div class="col-12">
+      <label>Projection:</label>
+      <select id="projection_system" (change)="systemSelected($event)">
+        <option>Steamer</option>
+        <option>TheBat</option>
+        <option>TheBatX</option>
+        <option>ATC</option>
+      </select>
+    </div>
+  </div>
   <div class="row">
     <div class="col-12">
       <div *ngIf="rankings">

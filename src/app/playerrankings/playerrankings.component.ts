@@ -13,12 +13,19 @@ export class PlayerrankingsComponent implements OnInit {
   positionalRanking = {} as PositionalRanking;
   pitcherRanking: PitcherRanking[];
   pos: string;
+  selectedSystem: string;
 
   constructor(private playerService: PlayerService) { }
 
   ngOnInit(): void {
-    this.playerService.GetPitcherRankings().subscribe(p => this.pitcherRanking = p);
-    this.playerService.GetHitterRankings().subscribe(r => this.SetUpStuff(r));
+    this.getRankings('Steamer');
+  }
+  systemSelected(system: any) {
+    this.getRankings(system.currentTarget.value);
+  }
+  getRankings(system: string) {
+    this.playerService.GetPitcherRankings(system).subscribe(p => this.pitcherRanking = p);
+    this.playerService.GetHitterRankings(system).subscribe(r => this.SetUpStuff(r));
   }
   SetUpStuff(r: HitterRanking[]) {
     this.rankings = r;

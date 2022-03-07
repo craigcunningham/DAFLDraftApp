@@ -47,13 +47,18 @@ export class PlayerService {
     return this.http.get<number>(url);
   }
 
-  GetHitterRankings() {
-    const url = `${this.playersUrl}/HitterRankings`;
+  GetHitterRankings(system: string) {
+    const year = 2022;
+    const url = `${this.playersUrl}/HitterRankings/${year}/${system}`;
     return this.http.get<HitterRanking[]>(url);
   }
 
-  GetPitcherRankings() {
-    const url = `${this.playersUrl}/PitcherRankings`;
+  GetPitcherRankings(system: string) {
+    const year = 2022;
+    if (system === 'TheBatX') {
+      system = 'TheBat';
+    }
+    const url = `${this.playersUrl}/PitcherRankings/${year}/${system}`;
     return this.http.get<PitcherRanking[]>(url);
   }
 
