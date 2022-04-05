@@ -8,6 +8,7 @@ import { RosterService } from '../roster.service';
 import { TeamRoster } from '../teamroster';
 import { PlayerService } from '../player.service';
 import { PositionService } from '../position.service';
+import { MessageService } from '../message.service';
 
 @Component({
   selector: 'app-roster',
@@ -24,12 +25,14 @@ export class RosterComponent implements OnInit {
     private playerService: PlayerService,
     private teamService: TeamService,
     private rosterService: RosterService,
+    private messageService: MessageService,
     private positionService: PositionService) { }
 
   SetPlayer(players: Player[], position: string) {
     players.forEach(player => {
-      this.positionService.getPositionsForPlayer(player.id)
-      .subscribe(positions => player.eligiblePositions = positions);
+      player.eligiblePositions = player.eligible_positions.split(',');
+      // this.positionService.getPositionsForPlayer(player.id)
+      // .subscribe(function(positions) { player.eligiblePositions = positions; } );
 
       // this.playerService.GetSalary(player.id)
       // .subscribe(salary => player.salary = salary)
@@ -107,7 +110,6 @@ loadData(teamid: number) {
     } else {
       id = 10;
     }
-    console.log('id: ' + id);
     this.teamid = id;
     this.loadData(this.teamid);
   }
@@ -117,7 +119,11 @@ loadData(teamid: number) {
     .subscribe(teams => this.team = teams.find(team => team.id === this.teamid));
   }
 
-  MovePlayer(playerid: number, position: Position) {
+  MovePlayer(playerid: number, position: string) {
+    // console.log(`Move player ${playerid} to ${position}`);
     this.rosterService.MovePlayer(playerid, position);
+  }
+  private log(message: string) {
+    this.messageService.add(`roster.component.ts: ${message}`);
   }
 }

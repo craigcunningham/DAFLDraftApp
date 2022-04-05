@@ -6,7 +6,8 @@ export class Player {
   fangraphsId: number;
   salary: number;
   pitcherInd: string;
-  eligiblePositions: Position[];
+  eligiblePositions: string[];
+  eligible_positions: string;
   cbs_id: string;
   fangraphs_name: string;
 }

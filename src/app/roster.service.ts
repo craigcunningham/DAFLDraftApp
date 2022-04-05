@@ -9,6 +9,7 @@ import { MessageService } from './message.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { RosterAddition } from './rosterAddition';
 import { environment } from './../environments/environment';
+import { PlayerMove } from './models/PlayerMove';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json'})
@@ -51,9 +52,18 @@ export class RosterService {
     return this.http.post<Roster>(this.rosterUrl, roster, httpOptions);
   }
 
-MovePlayer (playerToMove: number, position: Position): void {
-  const url = `${this.rosterUrl}/MovePlayer/${playerToMove}/${position.position}`;
-  this.http.put<Roster>(this.rosterUrl, httpOptions).subscribe(r => {});
+MovePlayer (playerToMove: number, position: string): void {
+  // console.log(`Move player ${playerToMove} to ${position}`);
+  const url = `${this.rosterUrl}/MovePlayer`;
+  // this.http.put<Roster>(this.rosterUrl, httpOptions).subscribe(r => {});
+    console.log(`Called movePlayer with id=${playerToMove} and ${position}`);
+    const obj = new PlayerMove();
+    obj.id = playerToMove;
+    obj.position = position;
+    this.http.post<PlayerMove>(url, obj, httpOptions).pipe(
+    tap(_ => console.log(`moved player id=${playerToMove} to ${position}`)),
+      catchError(this.handleError<any>('updatePlayer'))
+    );
 }
 
   private handleError<T>(operation = 'operation', result?: T) {

@@ -7,6 +7,7 @@ import { environment } from '../environments/environment';
 import { Player } from './player';
 import { HitterRanking, PitcherRanking } from './ranking';
 import { MessageService } from './message.service';
+import { PlayerMove } from './models/PlayerMove';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json'})

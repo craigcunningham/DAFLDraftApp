@@ -23,11 +23,11 @@
               <td>{{ teamRoster.C.salary }}</td>
               <td>
                   <span>
-                    <span title='Move Player To'
+                    <button title='Move Player To'
                         (onclick)='MovePlayer(teamRoster.C.id, position)'
                         *ngFor="let position of teamRoster.C.eligiblePositions">
-                      {{ position.position }}
-                    </span>
+                      {{ position }}
+                  </button>
                   </span>
               </td>
             </tr>
@@ -45,7 +45,7 @@
                       <span title='Move Player To'
                           (onclick)='MovePlayer(teamRoster.First.id, position)'
                           *ngFor="let position of teamRoster.First.eligiblePositions">
-                        {{ position.position }}
+                        {{ position }}
                       </span>
                     </span>
                 </td>
@@ -64,7 +64,7 @@
                         <span title='Move Player To'
                             (onclick)='MovePlayer(teamRoster.Second.id, position)'
                             *ngFor="let position of teamRoster.Second.eligiblePositions">
-                          {{ position.position }}
+                          {{ position }}
                         </span>
                       </span>
                   </td>
@@ -81,7 +81,7 @@
                       <span title='Move Player To'
                           (onclick)='MovePlayer(teamRoster.Third.id, position)'
                           *ngFor="let position of teamRoster.Third.eligiblePositions">
-                        {{ position.position }}
+                        {{ position }}
                       </span>
                     </span>
                 </td>
@@ -98,7 +98,7 @@
                       <span title='Move Player To'
                           (onclick)='MovePlayer(teamRoster.SS.id, position)'
                           *ngFor="let position of teamRoster.SS.eligiblePositions">
-                        {{ position.position }}
+                        {{ position }}
                       </span>
                     </span>
                 </td>
@@ -115,7 +115,7 @@
                       <span title='Move Player To'
                           (onclick)='MovePlayer(teamRoster.UT.id, position)'
                           *ngFor="let position of teamRoster.UT.eligiblePositions">
-                        {{ position.position }}
+                        {{ position }}
                       </span>
                     </span>
                 </td>
@@ -163,11 +163,11 @@
                 <td><div *ngIf="teamRoster.B[number]">{{ teamRoster.B[number].salary }}</div></td>
                 <td>
                     <span *ngIf="teamRoster.B[number]">
-                      <a class="noDecoration" title='Move Player To'
-                          (click)='MovePlayer(teamRoster.B[number].id, position)'
+                      <button title='Move Player To'
+                          (click)="MovePlayer(teamRoster.B[number].id, position)"
                           *ngFor="let position of teamRoster.B[number].eligiblePositions">
-                        {{ position.position }}
-                      </a>
+                        {{ position }}
+                    </button>
                     </span>
                 </td>
             </tr>
