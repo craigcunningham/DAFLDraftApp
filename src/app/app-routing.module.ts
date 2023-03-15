@@ -9,7 +9,7 @@ import { PlayerrankingsComponent } from './playerrankings/playerrankings.compone
 import { LoginComponent } from './login/login.component';
 import { AuthorizeGuard } from './services/authorize.guard';
 import { MyProtectionListComponent } from './my-protectionlist/my-protectionlist.component';
-import { MyRosterComponent } from './my-roster/my-roster.component';
+import { PlayerDetailComponent } from './player-detail/player-detail.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'dafldraft', pathMatch: 'full' },
@@ -20,7 +20,8 @@ const routes: Routes = [
   { path: 'rankings', component: PlayerrankingsComponent, canActivate: [AuthorizeGuard]  },
   { path: 'protection-list', component: ProtectionListComponent, canActivate: [AuthorizeGuard]  },
   { path: 'my-protection-list', component: MyProtectionListComponent },
-  { path: 'my-roster', component: MyRosterComponent },
+  { path: 'player-details/:id', component: PlayerDetailComponent },
+  { path: 'player-details', component: PlayerDetailComponent },
   { path: 'login/:password', component: LoginComponent },
 ];
 

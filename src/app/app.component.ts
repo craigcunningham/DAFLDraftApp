@@ -7,5 +7,5 @@ import { User } from './models/user.model';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'DAFL Draft 1212';
+  title = 'DAFL Draft';
 }

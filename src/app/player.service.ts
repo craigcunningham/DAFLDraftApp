@@ -5,6 +5,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 
 import { environment } from '../environments/environment';
 import { Player } from './player';
+import { Transaction } from './transaction';
 import { HitterRanking, PitcherRanking } from './ranking';
 import { MessageService } from './message.service';
 import { PlayerMove } from './models/PlayerMove';
@@ -46,6 +47,11 @@ export class PlayerService {
   GetSalary(playerid: number): Observable<number> {
     const url = `${this.playersUrl}/GetSalary/${playerid}`;
     return this.http.get<number>(url);
+  }
+  GetTransactions(playerid: number): Observable<Transaction[]> {
+    const url = `${this.playersUrl}/GetTransactions/${playerid}`;
+    console.log('playerservice.GetTransactions: ' + url);
+    return this.http.get<Transaction[]>(url);
   }
 
   GetHitterRankings(system: string) {

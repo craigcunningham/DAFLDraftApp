@@ -1,0 +1,12 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+        <app-player-autocomplete #playerSelecter [placeHolder]='placeHolder' (playerSelected)="playerSelected($event)"></app-player-autocomplete>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <app-player-transactions #playerTransactions></app-player-transactions>
+    </div>
+  </div>
+</div>

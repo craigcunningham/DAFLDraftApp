@@ -17,7 +17,7 @@
           <div class="row">
               <label>Position:</label>
               <select id="position" #positioninput [(ngModel)]="position">
-              <option *ngFor="let position of positionsForPlayer" value={{position.position}}>{{position.position}}</option>
+              <option *ngFor="let position of positionsForPlayer" value={{position}}>{{position}}</option>
             </select>
           </div>
           <div class="row">
@@ -40,11 +40,6 @@
         <div col-md-7>
           <app-rostercounts #rosterCount></app-rostercounts>
         </div>
-    <div class="row">
-      <div class="col-md-3">
-        <app-roster #rosterapp></app-roster>
-      </div>
-    </div>
     <div class="row">
       <div class="col-md-5">
       </div>

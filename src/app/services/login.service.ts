@@ -35,15 +35,16 @@ export class LoginService {
 
   logUserIn(password: string): void {
     const url = `${this.loginUrl}/${password}`;
-    let u: User;
-    u = new User();
-    u.name = 'But Justice';
-    u.team = 1;
-    u.permissions = 'Admin';
-    this.processLogin(u);
-    // this.http.get<User>(url).subscribe(u => this.processLogin(u[0]));
+    // let u: User;
+    // u = new User();
+    // u.name = 'But Justice';
+    // u.team = 1;
+    // u.permissions = 'Admin';
+    // this.processLogin(u);
+    this.http.get<User>(url).subscribe(u => this.processLogin(u[0]));
   }
   processLogin(user: User) {
+    console.log('processLogin', user);
     if (user.permissions === 'Admin') {
       this.route.navigateByUrl('/dafldraft');
     } else if (user.permissions === 'Team') {

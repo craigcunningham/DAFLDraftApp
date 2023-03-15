@@ -4,7 +4,7 @@
       <h2>Teams</h2>
       <ul>
         <li *ngFor="let team of teams">
-          <a href='rosters/{{ team.id }}'>{{ team.name }}</a>
+          <a routerLink='/rosters/{{ team.id }}'>{{ team.name }}</a>
           &nbsp;&nbsp;&nbsp;&nbsp;
           <a href='protection-list/{{ team.id }}'><i class="bi bi-shield-plus"></i></a>
         </li>

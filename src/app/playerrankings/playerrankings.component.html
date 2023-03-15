@@ -71,7 +71,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let player of pitcherRanking; let i = index" [ngClass]="{'protected': player.protect == 1}">
+            <tr *ngFor="let player of pitcherRanking; let i = index" [ngClass]="{'protected': player.protect >= 1}">
               <td>{{ i + 1 }}</td>
               <td>{{ player.playerName }}</td>
               <td>{{ player.adp }}</td>

@@ -42,7 +42,8 @@ import { UserService } from './services/user.service';
 import { LoginComponent } from './login/login.component';
 import { MenuNavComponent } from './menu-nav/menu-nav.component';
 import { MyProtectionListComponent } from './my-protectionlist/my-protectionlist.component';
-import { MyRosterComponent } from './my-roster/my-roster.component';
+import { PlayerDetailComponent } from './player-detail/player-detail.component';
+import { PlayerTransactionsComponent } from './player-transactions/player-transactions.component';
 
 
 @NgModule({
@@ -64,7 +65,8 @@ import { MyRosterComponent } from './my-roster/my-roster.component';
     CheckPermissionDirective,
     MenuNavComponent,
     MyProtectionListComponent,
-    MyRosterComponent
+    PlayerDetailComponent,
+    PlayerTransactionsComponent
   ],
   imports: [
     BrowserModule,

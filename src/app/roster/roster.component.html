@@ -1,6 +1,68 @@
-<div *ngIf="team" class="container">
-  <h2>{{team.name}}</h2>
+<style>
+  .movePlayer {
+    margin-right: 2px;
+  }
+</style>
 
+<div *ngIf="team" class="container">
+  <ng-template #c_content><tr><td>C</td><td></td><td></td><td></td></tr></ng-template>
+  <ng-template #first_content><tr><td>1B</td><td></td><td></td><td></td></tr></ng-template>
+  <ng-template #second_content><tr><td>2B</td><td></td><td></td><td></td></tr></ng-template>
+  <ng-template #ss_content><tr><td>SS</td><td></td><td></td><td></td></tr></ng-template>
+  <ng-template #third_content><tr><td>3B</td><td></td><td></td><td></td></tr></ng-template>
+  <ng-template #ut_content><tr><td>UT</td><td></td><td></td><td></td></tr></ng-template>
+  <h2>{{team.name}}</h2>
+  <input type="hidden" id="team" value="{{ team.id }}" />
+  <div class="row">
+    <div class="col-6">
+      <div class="container">
+        <div class="row">
+          <app-player-autocomplete #playerSelecter [placeHolder]='placeHolder' (playerSelected)="playerSelected($event)"></app-player-autocomplete>
+        </div>
+        <div class="row">
+            <label>Position:</label>
+            <select id="position" #positioninput [(ngModel)]="position">
+            <option *ngFor="let position of positionsForPlayer" value={{position}}>{{position}}</option>
+          </select>
+        </div>
+        <div class="row">
+            <label>Salary:</label>
+            <input type="text" value="1" id="salary" size="3" #salaryinput [(ngModel)]="salary" />
+        </div>
+        <div class="row">
+            <label>Year:</label>
+            <input type="text" value="1" id="contract" size="3" #contractinput [(ngModel)]="contractYear" />
+        </div>
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <h4><label>Count:</label><span>{{ PlayerCount }}</span></h4>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <h4><label>Salary:</label><span>${{ TotalSalary }}</span></h4>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <h4><label>Left:</label><span>${{ MoneyLeft }}</span></h4>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <h4><label>Max Bid:</label><span>${{ MaxBid }}</span></h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <button (click)="save($event, playerSelecter, positioninput)" #saveButton>Save</button>
+  </div>
   <div *ngIf="teamRoster" class="container">
     <table class="rosterCounts">
       <thead>
@@ -12,7 +74,7 @@
         </tr>
       </thead>
       <tbody>
-          <tr *ngIf="teamRoster.C">
+        <tr *ngIf="teamRoster.C;else c_content">
               <td>C</td>
               <td><div>
                 <a href="https://www.fangraphs.com/players/{{ teamRoster.C.fangraphs_name }}/{{ teamRoster.C.fangraphsId }}/stats" class="btn btn-success btn-sm">FG</a>
@@ -23,15 +85,15 @@
               <td>{{ teamRoster.C.salary }}</td>
               <td>
                   <span>
-                    <button title='Move Player To'
-                        (onclick)='MovePlayer(teamRoster.C.id, position)'
+                    <button class="btn btn-sm btn-secondary movePlayer" title='Move Player To'
+                        (click)='MovePlayer(teamRoster.C.id, position)'
                         *ngFor="let position of teamRoster.C.eligiblePositions">
                       {{ position }}
                   </button>
                   </span>
               </td>
             </tr>
-            <tr *ngIf="teamRoster.First">
+            <tr *ngIf="teamRoster.First;else first_content">
                 <td>1B</td>
                 <td><div>
                   <a href="https://www.fangraphs.com/players/{{ teamRoster.First.fangraphs_name }}/{{ teamRoster.First.fangraphsId }}/stats" class="btn btn-success btn-sm">FG</a>
@@ -42,15 +104,15 @@
                 <td>{{ teamRoster.First.salary }}</td>
                 <td>
                     <span>
-                      <span title='Move Player To'
-                          (onclick)='MovePlayer(teamRoster.First.id, position)'
+                      <button class="btn btn-sm btn-secondary movePlayer" title='Move Player To'
+                          (click)='MovePlayer(teamRoster.First.id, position)'
                           *ngFor="let position of teamRoster.First.eligiblePositions">
                         {{ position }}
-                      </span>
+                    </button>
                     </span>
                 </td>
                 </tr>
-            <tr *ngIf="teamRoster.Second">
+            <tr *ngIf="teamRoster.Second;else second_content">
                 <td>2B</td>
                 <td>
                   <div>
@@ -61,15 +123,15 @@
                   <td>{{ teamRoster.Second.salary }}</td>
                   <td>
                       <span *ngIf="teamRoster.Second">
-                        <span title='Move Player To'
-                            (onclick)='MovePlayer(teamRoster.Second.id, position)'
+                        <button class="btn btn-sm btn-secondary movePlayer" title='Move Player To'
+                            (click)='MovePlayer(teamRoster.Second.id, position)'
                             *ngFor="let position of teamRoster.Second.eligiblePositions">
                           {{ position }}
-                        </span>
+                      </button>
                       </span>
                   </td>
                 </tr>
-            <tr *ngIf="teamRoster.Third">
+            <tr *ngIf="teamRoster.Third;else third_content">
                 <td>3B</td>
                 <td><div>
                   <a href="https://www.fangraphs.com/players/{{ teamRoster.Third.fangraphs_name }}/{{ teamRoster.Third.fangraphsId }}/stats" class="btn btn-success btn-sm">FG</a>
@@ -78,15 +140,15 @@
                 <td>{{ teamRoster.Third.salary }}</td>
                 <td>
                     <span *ngIf="teamRoster.Third">
-                      <span title='Move Player To'
-                          (onclick)='MovePlayer(teamRoster.Third.id, position)'
+                      <button class="btn btn-sm btn-secondary movePlayer" title='Move Player To'
+                          (click)='MovePlayer(teamRoster.Third.id, position)'
                           *ngFor="let position of teamRoster.Third.eligiblePositions">
                         {{ position }}
-                      </span>
+                    </button>
                     </span>
                 </td>
               </tr>
-            <tr *ngIf="teamRoster.SS">
+            <tr *ngIf="teamRoster.SS;else ss_content">
                 <td>SS</td>
                 <td><div>
                   <a href="https://www.fangraphs.com/players/{{ teamRoster.SS.fangraphs_name }}/{{ teamRoster.SS.fangraphsId }}/stats" class="btn btn-success btn-sm">FG</a>
@@ -95,15 +157,15 @@
                 <td>{{ teamRoster.SS.salary }}</td>
                 <td>
                     <span *ngIf="teamRoster.SS">
-                      <span title='Move Player To'
-                          (onclick)='MovePlayer(teamRoster.SS.id, position)'
+                      <button class="btn btn-sm btn-secondary movePlayer" title='Move Player To'
+                          (click)='MovePlayer(teamRoster.SS.id, position)'
                           *ngFor="let position of teamRoster.SS.eligiblePositions">
                         {{ position }}
-                      </span>
+                    </button>
                     </span>
                 </td>
               </tr>
-            <tr *ngIf="teamRoster.UT">
+            <tr *ngIf="teamRoster.UT;else ut_content">
                 <td>UT</td>
                 <td><div>
                   <a href="https://www.fangraphs.com/players/{{ teamRoster.UT.fangraphs_name }}/{{ teamRoster.UT.fangraphsId }}/stats" class="btn btn-success btn-sm">FG</a>
@@ -112,11 +174,11 @@
                 <td>{{ teamRoster.UT.salary }}</td>
                 <td>
                     <span *ngIf="teamRoster.UT">
-                      <span title='Move Player To'
-                          (onclick)='MovePlayer(teamRoster.UT.id, position)'
+                      <button class="btn btn-sm btn-secondary movePlayer" title='Move Player To'
+                          (click)='MovePlayer(teamRoster.UT.id, position)'
                           *ngFor="let position of teamRoster.UT.eligiblePositions">
                         {{ position }}
-                      </span>
+                    </button>
                     </span>
                 </td>
               </tr>
@@ -129,11 +191,11 @@
                 <td><span *ngIf="teamRoster.OF[number]">{{ teamRoster.OF[number].salary }}</span></td>
                 <td>
                     <span *ngIf="teamRoster.OF[number]">
-                      <span title='Move Player To'
-                          (onclick)='MovePlayer(teamRoster.OF[number].id, position)'
+                      <button class="btn btn-sm btn-secondary movePlayer" title='Move Player To'
+                          (click)='MovePlayer(teamRoster.OF[number].id, position)'
                           *ngFor="let position of teamRoster.OF[number].eligiblePositions">
-                        {{ position.position }}
-                      </span>
+                        {{ position }}
+                    </button>
                     </span>
                 </td>
                   </tr>
@@ -146,11 +208,11 @@
                 <td><div *ngIf="teamRoster.P[number]">{{ teamRoster.P[number].salary }}</div></td>
                 <td>
                     <span *ngIf="teamRoster.P[number]">
-                      <a  title='Move Player To'
+                      <button class="btn btn-sm btn-secondary movePlayer" title='Move Player To'
                           (click)='MovePlayer(teamRoster.P[number].id, position)'
                           *ngFor="let position of teamRoster.P[number].eligiblePositions">
-                        {{ position.position }}
-                      </a>
+                        {{ position }}
+                    </button>
                     </span>
                 </td>
             </tr>
@@ -163,7 +225,7 @@
                 <td><div *ngIf="teamRoster.B[number]">{{ teamRoster.B[number].salary }}</div></td>
                 <td>
                     <span *ngIf="teamRoster.B[number]">
-                      <button title='Move Player To'
+                      <button class="btn btn-sm btn-secondary movePlayer" title='Move Player To'
                           (click)="MovePlayer(teamRoster.B[number].id, position)"
                           *ngFor="let position of teamRoster.B[number].eligiblePositions">
                         {{ position }}

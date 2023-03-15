@@ -48,7 +48,16 @@ export class DafldraftComponent implements OnInit {
     this.rosterService.GetTenMostRecentAdditions()
     .subscribe(adds => this.SetAdditions(adds));
 
-    this.positionService.getPositions().subscribe(p => this.SetPositionDropDown(p));
+    this.positionService.getPositions().subscribe(p => this.preparePositionArray(p));
+  }
+
+  preparePositionArray(positions: any) {
+    let positionArray = new Array();
+    positions.forEach(function(p) {
+      positionArray.push(p.position);
+    });
+    // let p = positionArray.
+    this.SetPositionDropDown(positionArray);
   }
 
   SetAdditions(adds: RosterAddition[]) {
@@ -58,17 +67,30 @@ export class DafldraftComponent implements OnInit {
   playerSelected(player: any) {
     this.player = player.player_id;
     this.currentPlayerName = player.name;
-    this.positionService.getPositionsForPlayer(this.player)
-    .subscribe(positions => this.SetPositionDropDown(positions));
+    this.contractYear = 1;
+    this.salary = 1;
+    let arrayOfPositions = 'B'.split('|');
+    if (player.eligible_positions != null) {
+      let arrayOfPositions = player.eligible_positions.split('|');
+    } else {
+      if (player.position === 'H') {
+        arrayOfPositions.push('UT');
+      } else {
+        arrayOfPositions.push('P');
+      }
+    }
+    this.SetPositionDropDown(arrayOfPositions);
   }
 
   teamSelected(team: number) {
     this.selectedTeam = this.teams.find(t => t.id === Number(this.team));
   }
 
-  SetPositionDropDown(positions) {
-    this.positionsForPlayer = positions;
-    this.position = positions[0];
+  SetPositionDropDown(arrayOfPositions) {
+    // let arrayOfPositions = positions.split(',');
+    // arrayOfPositions.push('B');
+    this.positionsForPlayer = arrayOfPositions;
+    this.position = arrayOfPositions[0];
   }
 
   AddPurchaseToRecentAdditions(id: number, playerName: string, position: string, teamName: string, salary: number) {
@@ -88,13 +110,21 @@ export class DafldraftComponent implements OnInit {
   save(event: any, playerSelecter, positionDropDown) {
     const dateAdded: Date = new Date(2019, 3, 1);
     this.rosterService.addPlayerToTeam(this.player, this.position, this.team, this.salary, this.contractYear, dateAdded)
-    .subscribe(r => this.AddPurchaseToRecentAdditions(r.id,
-                                                      this.currentPlayerName,
-                                                      r.position,
-                                                      this.selectedTeam.name,
-                                                      r.salary));
-    this.rosterCount.loadData();
-    playerSelecter.clear();
-    this.SetPositionDropDown(this.allPositions);
-  }
+    .subscribe(r => this.UpdatePage(r));
+//      .subscribe(r => this.AddPurchaseToRecentAdditions(r.id,
+//        this.currentPlayerName,
+//        r.position,
+//        this.selectedTeam.name,
+//        r.salary));
+  playerSelecter.clear();
+}
+  UpdatePage(r) {
+    this.AddPurchaseToRecentAdditions(r.id,
+      this.currentPlayerName,
+      r.position,
+      this.selectedTeam.name,
+      r.salary);
+      this.rosterCount.loadData();
+      this.SetPositionDropDown(this.allPositions);
+    }
 }

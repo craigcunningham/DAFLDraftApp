@@ -6,4 +6,5 @@ export class Roster {
   time_drafted: Date;
   salary: number;
   contract_year: number;
+  active: number;
 }

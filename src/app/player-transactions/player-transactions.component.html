@@ -1,0 +1,18 @@
+<table class="table" *ngIf="transactions">
+  <thead>
+    <tr>
+      <th>Team</th>
+      <th>Salary</th>
+      <th>Active</th>
+      <th>Time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let transaction of transactions">
+      <td>{{ transaction.team_name }}</td>
+      <td>{{ transaction.salary }}</td>
+      <td>{{ transaction.active }}</td>
+      <td>{{ transaction.time_drafted }}</td>
+    </tr>
+  </tbody>
+</table>

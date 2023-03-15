@@ -47,23 +47,20 @@ export class RosterService {
                   salary: number, contractYear: number, dateToAdd: Date): Observable<Roster> {
     const roster: Roster = {id: 0, player_id: playerToAdd,
     team_id: team, salary: salary, contract_year: contractYear,
-    time_drafted: dateToAdd, position: position};
+    time_drafted: dateToAdd, position: position, active: 1};
 
     return this.http.post<Roster>(this.rosterUrl, roster, httpOptions);
   }
 
-MovePlayer (playerToMove: number, position: string): void {
+MovePlayer (playerToMove: number, position: string): Observable<PlayerMove> {
   // console.log(`Move player ${playerToMove} to ${position}`);
   const url = `${this.rosterUrl}/MovePlayer`;
   // this.http.put<Roster>(this.rosterUrl, httpOptions).subscribe(r => {});
-    console.log(`Called movePlayer with id=${playerToMove} and ${position}`);
     const obj = new PlayerMove();
     obj.id = playerToMove;
     obj.position = position;
-    this.http.post<PlayerMove>(url, obj, httpOptions).pipe(
-    tap(_ => console.log(`moved player id=${playerToMove} to ${position}`)),
-      catchError(this.handleError<any>('updatePlayer'))
-    );
+    console.log(`Called movePlayer with ${obj.id} and ${obj.position}`);
+    return this.http.post<PlayerMove>(url, obj, httpOptions);
 }
 
   private handleError<T>(operation = 'operation', result?: T) {
