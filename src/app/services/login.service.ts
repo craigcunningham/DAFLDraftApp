@@ -44,17 +44,17 @@ export class LoginService {
     this.http.get<User>(url).subscribe(u => this.processLogin(u[0]));
   }
   processLogin(user: User) {
-    console.log('processLogin', user);
+    this.userService.SetUser(user);
+    this.fireIsLoggedIn.emit(user);
+    // this.route.navigateByUrl('/my-protection-list');
+
     if (user.permissions === 'Admin') {
       this.route.navigateByUrl('/dafldraft');
     } else if (user.permissions === 'Team') {
-      this.route.navigateByUrl('/my-protection-list');
+     this.route.navigateByUrl('/my-protection-list');
     } else {
-      throw false;
+     throw false;
     }
-
-    this.userService.SetUser(user);
-    this.fireIsLoggedIn.emit(user);
     // return this.userService.GetUserName();
   }
   getEmitter() {
