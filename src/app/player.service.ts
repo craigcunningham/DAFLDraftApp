@@ -55,13 +55,13 @@ export class PlayerService {
   }
 
   GetHitterRankings(system: string) {
-    const year = 2022;
+    const year = new Date().getFullYear();
     const url = `${this.playersUrl}/HitterRankings/${year}/${system}`;
     return this.http.get<HitterRanking[]>(url);
   }
 
   GetPitcherRankings(system: string) {
-    const year = 2022;
+    const year = new Date().getFullYear();
     if (system === 'TheBatX') {
       system = 'TheBat';
     }

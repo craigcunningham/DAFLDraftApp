@@ -10,7 +10,7 @@ export class HitterRanking {
   ab: number;
   sb: number;
   r: number;
-  protect: number;
+  unavailable: number;
 }
 export class PitcherRanking {
   player_id: number;
@@ -26,7 +26,7 @@ export class PitcherRanking {
   ip: number;
   so: number;
   holds: number;
-  protect: number;
+  unavailable: number;
 }
 
 
