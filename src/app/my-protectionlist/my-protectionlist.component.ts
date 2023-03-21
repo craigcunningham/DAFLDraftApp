@@ -1,4 +1,5 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, Input, OnInit, ViewChild } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { EndofseasonrosterComponent } from '../endofseasonroster/endofseasonroster.component';
 import { User } from '../models/user.model';
 import { ProtectionList } from '../ProtectionList';
@@ -13,21 +14,22 @@ import { TeamService } from '../team.service';
 })
 
 export class MyProtectionListComponent implements OnInit {
-  currentUser: User;
+  @Input() teamid: number;
   teams: Team[];
   team: number;
   selectedTeam: Team;
   protectionlist: ProtectionList[];
   @ViewChild('endofseasonroster') roster: EndofseasonrosterComponent;
 
-  constructor(private teamService: TeamService, private userService: UserService) { }
+  constructor(private teamService: TeamService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    // console.log('MyProtectionListComponent');
-    this.currentUser = this.userService.GetUser();
-    this.teamService.getTeam(this.currentUser.team).subscribe(team => this.selectedTeam = team);
-    // console.log('user');
-    // console.log(this.currentUser);
+    let id = 0;
+    if (+this.route.snapshot.paramMap.get('id')) {
+      id = +this.route.snapshot.paramMap.get('id');
+    }
+    this.teamid = id;
+    this.teamService.getTeam(this.teamid).subscribe(team => this.selectedTeam = team);
   }
   // teamSelected(team: Team) {
   //   this.selectedTeam = team;

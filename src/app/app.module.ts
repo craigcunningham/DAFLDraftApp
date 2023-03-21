@@ -11,6 +11,7 @@ import { DafldraftComponent } from './dafldraft/dafldraft.component';
 import { PlayerAutocompleteComponent } from './player-autocomplete/player-autocomplete.component';
 import { TeamAutocompleteComponent } from './team-autocomplete/team-autocomplete.component';
 import { CheckPermissionDirective } from './services/permission-directive';
+import { MatSortModule, Sort } from '@angular/material/sort';
 
 import {
   MatButtonModule,
@@ -24,11 +25,13 @@ import {
   MatIconModule,
   MatCardModule,
   MatSelectModule,
-    MatToolbarModule,
-    MatInputModule,
-    MatDividerModule,
+  MatToolbarModule,
+  MatInputModule,
+  MatDividerModule,
+  MatTableModule,
   MatSelect,
   MatDivider} from '@angular/material';
+
 import { RosterComponent } from './roster/roster.component';
 import { RostercountsComponent } from './rostercounts/rostercounts.component';
 import { AllrostersComponent } from './allrosters/allrosters.component';
@@ -75,6 +78,8 @@ import { PlayerTransactionsComponent } from './player-transactions/player-transa
     HttpClientModule,
     MatInputModule,
     MatButtonModule,
+    MatSortModule,
+    MatTableModule,
     MatCheckboxModule,
     MatAutocompleteModule,
     BrowserAnimationsModule,

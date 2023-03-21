@@ -19,7 +19,7 @@ const routes: Routes = [
   { path: 'rosters', component: RosterComponent },
   { path: 'rankings', component: PlayerrankingsComponent, canActivate: [AuthorizeGuard]  },
   { path: 'protection-list', component: ProtectionListComponent, canActivate: [AuthorizeGuard]  },
-  { path: 'my-protection-list', component: MyProtectionListComponent },
+  { path: 'my-protection-list/:id', component: MyProtectionListComponent },
   { path: 'player-details/:id', component: PlayerDetailComponent },
   { path: 'player-details', component: PlayerDetailComponent },
   { path: 'login/:password', component: LoginComponent },

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { tap } from 'rxjs/operators';
 import { User } from '../models/user.model';
 import { LoginService } from '../services/login.service';
 import { UserService } from '../services/user.service';
@@ -15,10 +16,9 @@ export class MenuNavComponent implements OnInit {
   constructor(private loginService: LoginService, private userService: UserService) { }
 
   ngOnInit() {
-    this.loginService.getEmitter().subscribe(() => {
-      this.user = this.userService.GetUser();
-      console.log('menu-nav', this.user);
-      // this.ngOnInit();
-    });
+     this.loginService.GetUser().subscribe(user => {
+       console.log('nav init: ', user);
+       this.user = user[0];
+     });
   }
 }

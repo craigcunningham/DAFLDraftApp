@@ -9,90 +9,82 @@
 <div class="container">
   <div class="row">
     <div class="col-12">
-      <label>Projection:</label>
-      <select id="projection_system" (change)="systemSelected($event)">
-        <option>Steamer</option>
-        <option>TheBat</option>
-        <option>TheBatX</option>
-        <option>ATC</option>
+      <label>Position:</label>
+      <select id="positionFilter" (change)="positionSelected($event)">
+        <option>All</option>
+        <option *ngFor="let pos of positionList">{{ pos }}</option>
       </select>
     </div>
   </div>
   <div class="row">
     <div class="col-12">
-      <div *ngIf="rankings">
-        <div class="row" *ngFor="let pos of ['C', '1B', '2B', '3B', 'SS', 'OF', 'U']">
-          <table class="table">
-            <caption style="caption-side: top; text-align: center;"><h2>{{ pos }}</h2></caption>
-            <thead>
-              <tr>
-                <th>Rank</th>
-                <th>Player</th>
-                <th>ADP</th>
-                <th>Eligible</th>
-                <th>AB</th>
-                <th>AVG</th>
-                <th>HR</th>
-                <th>RBI</th>
-                <th>Runs</th>
-                <th>SB</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let player of positionalRanking[pos]; let i = index" [ngClass]="{'unavailable': player.unavailable == 1}">
-                <td>{{ i + 1 }}</td>
-                <td>
-                  <a href="https://www.fangraphs.com/players/{{ player.fangraphs_name }}/{{ player.fangraphs_id }}/stats" class="btn btn-success btn-sm">FG</a>
-                  &nbsp;&nbsp;<a href="https://dafl.baseball.cbssports.com/players/playerpage/{{ player.cbs_id }}/" class="btn btn-primary btn-sm">CBS</a>
-                  &nbsp;&nbsp;
-                  {{ player.playerName }}
-                </td>
-                <td>{{ player.adp }}</td>
-                <td>{{ player.eligible }}</td>
-                <td>{{ player.ab }}</td>
-                <td>{{ player.avg }}</td>
-                <td>{{ player.hr }}</td>
-                <td>{{ player.rbi }}</td>
-                <td>{{ player.r }}</td>
-                <td>{{ player.sb }}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <table class="table">
-          <caption style="caption-side: top; text-align: center;"><h2>Pitchers</h2></caption>
-          <thead>
-            <tr>
-              <th>Rank</th>
-              <th>Player</th>
-              <th>ADP</th>
-              <th>Eligible</th>
-              <th>IP</th>
-              <th>Wins</th>
-              <th>ERA</th>
-              <th>SO</th>
-              <th>Saves</th>
-              <th>Holds</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let player of pitcherRanking; let i = index" [ngClass]="{'unavailable': player.unavailable >= 1}">
-              <td>{{ i + 1 }}</td>
-              <td>{{ player.playerName }}</td>
-              <td>{{ player.adp }}</td>
-              <td>{{ player.eligible }}</td>
-              <td>{{ player.ip }}</td>
-              <td>{{ player.w }}</td>
-              <td>{{ player.era }}</td>
-              <td>{{ player.so }}</td>
-              <td>{{ player.sv }}</td>
-              <td>{{ player.holds }}</td>
-            </tr>
-          </tbody>
-        </table>
+      <div class="row"> <!-- *ngFor="let datasource of positionalRanking2"-->
+          <mat-table [dataSource]="positionalRanking2" #positionalRank matSort (matSortChange)="announceSortChange($event)" class="table">
+            <!-- <caption style="caption-side: top; text-align: center;"><h2>{{ datasource.position }}</h2></caption> -->
+          <ng-container matColumnDef="playerName">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by playerName">
+              Name
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.playerName}} </td>
+          </ng-container>
+          <ng-container matColumnDef="adp">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by adp">
+              ADP
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.adp}} </td>
+          </ng-container>
+          <ng-container matColumnDef="eligible">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by eligible">
+              Eligible
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.eligible}} </td>
+          </ng-container>
+          <ng-container matColumnDef="ab">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by ab">
+              AB
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.ab}} </td>
+          </ng-container>
+          <ng-container matColumnDef="avg">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by avg">
+              AVG
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.avg}} </td>
+          </ng-container>
+          <ng-container matColumnDef="hr">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by hr">
+              HR
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.hr}} </td>
+          </ng-container>
+          <ng-container matColumnDef="rbi">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by rbi">
+              RBI
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.rbi}} </td>
+          </ng-container>
+          <ng-container matColumnDef="r">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by r">
+              Runs
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.r}} </td>
+          </ng-container>
+          <ng-container matColumnDef="sb">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by sb">
+              SB
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.sb}} </td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="{'unavailable': row.unavailable == 1}"></tr>
+          </mat-table>
       </div>
     </div>
-
   </div>
-
+  <!-- <td>
+    <a href="https://www.fangraphs.com/players/{{ player.fangraphs_name }}/{{ player.fangraphs_id }}/stats" class="btn btn-success btn-sm">FG</a>
+    &nbsp;&nbsp;<a href="https://dafl.baseball.cbssports.com/players/playerpage/{{ player.cbs_id }}/" class="btn btn-primary btn-sm">CBS</a>
+    &nbsp;&nbsp;
+    {{ player.playerName }}
+  </td> -->
 </div>

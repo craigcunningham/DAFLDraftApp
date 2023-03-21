@@ -7,7 +7,7 @@
       <a mat-button [routerLink]="'/rankings'" *appCheckPermission="'Admin'"> Rankings </a>
       <a mat-button [routerLink]="'/protection-list'" *appCheckPermission="'Admin'"> Protection Lists </a>
       <a mat-button [routerLink]="['/rosters', user.team]" *appCheckPermission="'Team'"> My Roster </a>
-      <a mat-button [routerLink]="'/my-protection-list'" *appCheckPermission="'Team'"> My Protection List </a>
+      <a mat-button [routerLink]="['/my-protection-list', user.team]" *appCheckPermission="'Team'"> My Protection List </a>
     </div>
   </mat-toolbar-row>
 </mat-toolbar>
