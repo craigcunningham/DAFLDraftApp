@@ -1,0 +1,8 @@
+.unavailable { background-color: dimgray; }
+.mat-cell { vertical-align: middle; }
+div.centered {
+      margin: auto;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+  }

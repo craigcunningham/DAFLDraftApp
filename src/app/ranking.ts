@@ -1,7 +1,12 @@
 export class HitterRanking {
   player_id: number;
   playerName: string;
-  fangraphs_id: number;
+  fangraphs_id: string;
+  fangraphs_name: string;
+  cbs_id: number;
+  adjusted: number;
+  guess: number;
+  salary: number;
   eligible: string;
   adp: number;
   hr: number;
@@ -15,9 +20,12 @@ export class HitterRanking {
 export class PitcherRanking {
   player_id: number;
   playerName: string;
-  fangraphs_id: number;
+  fangraphs_id: string;
   fangraphs_name: string;
   cbs_id: string;
+  adjusted: number;
+  guess: number;
+  salary: number;
   eligible: string;
   adp: number;
   w: number;
@@ -25,12 +33,6 @@ export class PitcherRanking {
   sv: number;
   ip: number;
   so: number;
-  holds: number;
+  hld: number;
   unavailable: number;
 }
-
-
-
-/*
-                <th>Eligible</th>
-*/

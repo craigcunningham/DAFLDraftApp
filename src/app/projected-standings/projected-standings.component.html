@@ -1,0 +1,106 @@
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.js"></script>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet"/>
+<!-- MDB -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.css" rel="stylesheet"/>
+
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <div class="row">
+          <mat-table [dataSource]="hitterStats" #hitterTable matSort (matSortChange)="announceSortChange($event)" class="table">
+            <caption style="caption-side: top; text-align: center;"><h2>Hitting</h2></caption>
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by team name">
+              Team
+            </th>
+            <td mat-cell *matCellDef="let element">
+              {{element.name}}
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="avg">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by avg">
+              AVG
+            </th>
+            <td mat-cell *matCellDef="let element"><div class="centered">{{element.avg | number : '1.3-3' }}</div></td>
+          </ng-container>
+          <ng-container matColumnDef="hr">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by hr">
+              HR
+            </th>
+            <td mat-cell *matCellDef="let element"><div class="centered">{{element.hr}}</div></td>
+          </ng-container>
+          <ng-container matColumnDef="rbi">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by rbi">
+              RBI
+            </th>
+            <td mat-cell *matCellDef="let element"><div class="centered">{{element.rbi}}</div></td>
+          </ng-container>
+          <ng-container matColumnDef="runs">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by runs">
+              Runs
+            </th>
+            <td mat-cell *matCellDef="let element"><div class="centered">{{element.runs}}</div></td>
+          </ng-container>
+          <ng-container matColumnDef="sb">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by sb">
+              SB
+            </th>
+            <td mat-cell *matCellDef="let element"><div class="centered">{{element.sb}}</div></td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="displayedHittingColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedHittingColumns;"></tr>
+          </mat-table>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <div class="row">
+          <mat-table [dataSource]="pitchingStats" #pitchingTable matSort (matSortChange)="announceSortChange($event)" class="table">
+            <caption style="caption-side: top; text-align: center;"><h2>Pitchers</h2></caption>
+            <ng-container matColumnDef="name">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by name">
+                Name
+              </th>
+              <td mat-cell *matCellDef="let element">
+                {{element.name}}
+              </td>
+            </ng-container>
+            <ng-container matColumnDef="era">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by era">
+                ERA
+              </th>
+              <td mat-cell *matCellDef="let element"><div class="centered">{{element.era | number : '1.2-2' }}</div></td>
+            </ng-container>
+            <ng-container matColumnDef="wins">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Wins">
+                Wins
+              </th>
+              <td mat-cell *matCellDef="let element"><div class="centered">{{element.wins}}</div></td>
+            </ng-container>
+            <ng-container matColumnDef="so">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by SO">
+                SO
+              </th>
+              <td mat-cell *matCellDef="let element"><div class="centered">{{element.so}}</div></td>
+            </ng-container>
+            <ng-container matColumnDef="saves">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by saves">
+                Saves
+              </th>
+              <td mat-cell *matCellDef="let element"><div class="centered">{{element.saves}}</div></td>
+            </ng-container>
+            <ng-container matColumnDef="holds">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by holds">
+                Holds
+              </th>
+              <td mat-cell *matCellDef="let element"><div class="centered">{{element.hld}}</div></td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedPitchingColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedPitchingColumns;"></tr>
+          </mat-table>
+      </div>
+    </div>
+  </div>
+</div>

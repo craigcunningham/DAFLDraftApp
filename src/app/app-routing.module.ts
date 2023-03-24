@@ -10,6 +10,8 @@ import { LoginComponent } from './login/login.component';
 import { AuthorizeGuard } from './services/authorize.guard';
 import { MyProtectionListComponent } from './my-protectionlist/my-protectionlist.component';
 import { PlayerDetailComponent } from './player-detail/player-detail.component';
+import { PitcherRankingsComponent } from './pitcher-rankings/pitcher-rankings.component';
+import { ProjectedStandingsComponent } from './projected-standings/projected-standings.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'dafldraft', pathMatch: 'full' },
@@ -18,6 +20,9 @@ const routes: Routes = [
   { path: 'dafldraft', component: DafldraftComponent, canActivate: [AuthorizeGuard] },
   { path: 'rosters', component: RosterComponent },
   { path: 'rankings', component: PlayerrankingsComponent, canActivate: [AuthorizeGuard]  },
+  { path: 'hitter-rankings', component: PlayerrankingsComponent, canActivate: [AuthorizeGuard]  },
+  { path: 'pitcher-rankings', component: PitcherRankingsComponent, canActivate: [AuthorizeGuard]  },
+  { path: 'projected-standings', component: ProjectedStandingsComponent, canActivate: [AuthorizeGuard]  },
   { path: 'protection-list', component: ProtectionListComponent, canActivate: [AuthorizeGuard]  },
   { path: 'my-protection-list/:id', component: MyProtectionListComponent },
   { path: 'player-details/:id', component: PlayerDetailComponent },

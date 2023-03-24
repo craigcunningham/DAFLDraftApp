@@ -47,6 +47,8 @@ import { MenuNavComponent } from './menu-nav/menu-nav.component';
 import { MyProtectionListComponent } from './my-protectionlist/my-protectionlist.component';
 import { PlayerDetailComponent } from './player-detail/player-detail.component';
 import { PlayerTransactionsComponent } from './player-transactions/player-transactions.component';
+import { PitcherRankingsComponent } from './pitcher-rankings/pitcher-rankings.component';
+import { ProjectedStandingsComponent } from './projected-standings/projected-standings.component';
 
 
 @NgModule({
@@ -69,7 +71,9 @@ import { PlayerTransactionsComponent } from './player-transactions/player-transa
     MenuNavComponent,
     MyProtectionListComponent,
     PlayerDetailComponent,
-    PlayerTransactionsComponent
+    PlayerTransactionsComponent,
+    PitcherRankingsComponent,
+    ProjectedStandingsComponent
   ],
   imports: [
     BrowserModule,

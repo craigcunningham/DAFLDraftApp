@@ -50,7 +50,6 @@ export class PlayerService {
   }
   GetTransactions(playerid: number): Observable<Transaction[]> {
     const url = `${this.playersUrl}/GetTransactions/${playerid}`;
-    console.log('playerservice.GetTransactions: ' + url);
     return this.http.get<Transaction[]>(url);
   }
 

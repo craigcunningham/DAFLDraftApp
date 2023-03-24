@@ -52,7 +52,7 @@ export class DafldraftComponent implements OnInit {
   }
 
   preparePositionArray(positions: any) {
-    let positionArray = new Array();
+    const positionArray = new Array();
     positions.forEach(function(p) {
       positionArray.push(p.position);
     });
@@ -69,9 +69,9 @@ export class DafldraftComponent implements OnInit {
     this.currentPlayerName = player.name;
     this.contractYear = 1;
     this.salary = 1;
-    let arrayOfPositions = 'B'.split('|');
+    const arrayOfPositions = 'B'.split('|');
     if (player.eligible_positions != null) {
-      let arrayOfPositions = player.eligible_positions.split('|');
+      player.eligible_positions.split('|').forEach((pos: string) => arrayOfPositions.push(pos));
     } else {
       if (player.position === 'H') {
         arrayOfPositions.push('UT');

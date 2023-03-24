@@ -17,7 +17,7 @@ export class MenuNavComponent implements OnInit {
 
   ngOnInit() {
      this.loginService.GetUser().subscribe(user => {
-       console.log('nav init: ', user);
+      //  console.log('nav init: ', user);
        this.user = user[0];
      });
   }

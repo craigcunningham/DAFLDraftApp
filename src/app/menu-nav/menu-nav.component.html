@@ -5,6 +5,12 @@
       <a mat-button [routerLink]="'/dafldraft'" *appCheckPermission="'Admin'"> Draft </a>
       <a mat-button [routerLink]="'/player-details'"> Player Details </a>
       <a mat-button [routerLink]="'/rankings'" *appCheckPermission="'Admin'"> Rankings </a>
+      <button mat-button [matMenuTriggerFor]="menu" *appCheckPermission="'Admin'"> Projections </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item [routerLink]="'/hitter-rankings'">Hitters</button>
+        <button mat-menu-item [routerLink]="'/pitcher-rankings'">Pitchers</button>
+        <button mat-menu-item [routerLink]="'/projected-standings'">Standings</button>
+      </mat-menu>
       <a mat-button [routerLink]="'/protection-list'" *appCheckPermission="'Admin'"> Protection Lists </a>
       <a mat-button [routerLink]="['/rosters', user.team]" *appCheckPermission="'Team'"> My Roster </a>
       <a mat-button [routerLink]="['/my-protection-list', user.team]" *appCheckPermission="'Team'"> My Protection List </a>

@@ -45,51 +45,51 @@ export class RosterComponent implements OnInit {
     private positionService: PositionService) { }
 
   SetPlayer(players: Player[], position: string) {
-    players.forEach(player => {
-      player.eligiblePositions = player.eligible_positions.split('|');
-      player.eligiblePositions.push('B');
-      this.PlayerCount += 1;
-      this.TotalSalary += player.salary;
-    });
+      players.forEach(player => {
+        player.eligiblePositions = player.eligible_positions.split('|');
+        player.eligiblePositions.push('B');
+        this.PlayerCount += 1;
+        this.TotalSalary += player.salary;
+      });
 
-    switch (position) {
-      case 'C': {
-        this.teamRoster.C = players[0];
-        break;
+      switch (position) {
+        case 'C': {
+          this.teamRoster.C = players[0];
+          break;
+        }
+        case '1B': {
+          this.teamRoster.First = players[0];
+          break;
+        }
+        case '2B': {
+          this.teamRoster.Second = players[0];
+          break;
+        }
+        case '3B': {
+          this.teamRoster.Third = players[0];
+          break;
+        }
+        case 'SS': {
+          this.teamRoster.SS = players[0];
+          break;
+        }
+        case 'UT': {
+          this.teamRoster.UT = players[0];
+          break;
+        }
+        case 'OF': {
+          this.teamRoster.OF = players;
+          break;
+        }
+        case 'P': {
+          this.teamRoster.P = players;
+          break;
+        }
+        case 'B': {
+          this.teamRoster.B = players;
+          break;
+        }
       }
-      case '1B': {
-        this.teamRoster.First = players[0];
-        break;
-      }
-      case '2B': {
-        this.teamRoster.Second = players[0];
-        break;
-      }
-      case '3B': {
-        this.teamRoster.Third = players[0];
-        break;
-      }
-      case 'SS': {
-        this.teamRoster.SS = players[0];
-        break;
-      }
-      case 'UT': {
-        this.teamRoster.UT = players[0];
-        break;
-      }
-      case 'OF': {
-        this.teamRoster.OF = players;
-        break;
-      }
-      case 'P': {
-        this.teamRoster.P = players;
-        break;
-      }
-      case 'B': {
-        this.teamRoster.B = players;
-        break;
-      }
-    }
   }
   set PlayerCount(value: number) {
     if (value !== this._PlayerCount) {
@@ -118,9 +118,9 @@ export class RosterComponent implements OnInit {
     this.salary = 1;
     this.player = player.player_id;
 
-    let arrayOfPositions = 'B'.split('|');
+    const arrayOfPositions = 'B'.split('|');
     if (player.eligible_positions != null) {
-      let arrayOfPositions = player.eligible_positions.split('|');
+      player.eligible_positions.split('|').forEach((pos: string) => arrayOfPositions.push(pos));
     } else {
       if (player.position === 'H') {
         arrayOfPositions.push('UT');
@@ -183,7 +183,7 @@ export class RosterComponent implements OnInit {
     this.playerService.getPlayersAtPostionForTeam(this.teamid, 'OF')
     .subscribe(players => this.SetPlayer(players, 'OF'));
     this.playerService.getPlayersAtPostionForTeam(this.teamid, 'P')
-    .subscribe(players => this.SetPlayer(players, 'P'));
+    .subscribe(players => {if (players) {this.SetPlayer(players, 'P'); }});
     this.playerService.getPlayersAtPostionForTeam(this.teamid, 'B')
     .subscribe(players => this.SetPlayer(players, 'B'));
 

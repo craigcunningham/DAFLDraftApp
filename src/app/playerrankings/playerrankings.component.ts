@@ -15,14 +15,14 @@ import {MatTableDataSource} from '@angular/material';
 
 export class PlayerrankingsComponent implements OnInit, AfterViewInit {
   rankings: HitterRanking[];
-  positionalRanking = {} as PositionalRanking;
-  positionalRanking2: MatTableDataSource<any>;
+  positionalRanking: MatTableDataSource<any>;
   position: [];
-  displayedColumns: string[] = ['playerName', 'adp', 'eligible', 'ab', 'avg', 'hr', 'rbi', 'r', 'sb'];
+  // tslint:disable-next-line:max-line-length
+  displayedColumns: string[] = ['#', 'fg', 'cbs', 'playerName', 'adjusted', 'guess', 'salary', 'adp', 'eligible', 'ab', 'avg', 'hr', 'rbi', 'r', 'sb'];
   positionList = ['C', '1B', '2B', '3B', 'SS', 'OF'];
-  pitcherRanking: PitcherRanking[];
   pos: string;
   selectedSystem: string;
+  selectedPosition = 'All Hitters';
 
   constructor(private playerService: PlayerService, private _liveAnnouncer: LiveAnnouncer) { }
 
@@ -39,19 +39,18 @@ export class PlayerrankingsComponent implements OnInit, AfterViewInit {
     this.getRankings(system.currentTarget.value);
   }
   positionSelected(position: any) {
-    const selectedPosition = position.currentTarget.value;
-    this.positionalRanking2.filter = selectedPosition.trim().toLowerCase();
+    this.selectedPosition = position.currentTarget.value;
+    this.positionalRanking.filter = this.selectedPosition.trim().toLowerCase();
   }
   getRankings(system: string) {
-    this.playerService.GetPitcherRankings(system).subscribe(p => this.pitcherRanking = p);
     this.playerService.GetHitterRankings(system).subscribe(r => this.SetUpStuff(r));
   }
   SetUpStuff(r: HitterRanking[]) {
     this.rankings = r;
-    this.positionalRanking2 = new MatTableDataSource(this.rankings);
-    this.positionalRanking2.sort = this.sort;
-    this.positionalRanking2.filterPredicate = function (record, filter) {
-      if (filter === 'all') {
+    this.positionalRanking = new MatTableDataSource(this.rankings);
+    this.positionalRanking.sort = this.sort;
+    this.positionalRanking.filterPredicate = function (record, filter) {
+      if (filter === 'all hitters') {
         return record.eligible.length >= 0;
       } else {
         return record.eligible.toLocaleLowerCase().search(filter.toLocaleLowerCase()) >= 0;
@@ -60,16 +59,10 @@ export class PlayerrankingsComponent implements OnInit, AfterViewInit {
   }
 
   announceSortChange(sortState: Sort) {
-    // console.log('announceSortChange', sortState);
-    // console.log('announceSortChange', this.CatcherRanking);
-    // console.log('announceSortChange', this.CatcherRanking.sortData);
-    // this.CatcherRanking.sortData = sortState;
-    // this.CatcherRanking.sort();
     if (sortState.direction) {
       this._liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);
     } else {
       this._liveAnnouncer.announce('Sorting cleared');
     }
   }
-
 }
