@@ -10,4 +10,5 @@ export class Player {
   eligible_positions: string;
   cbs_id: string;
   fangraphs_name: string;
+  adp: number;
 }

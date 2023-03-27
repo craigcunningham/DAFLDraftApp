@@ -58,6 +58,11 @@ export class PlayerService {
     const url = `${this.playersUrl}/HitterRankings/${year}/${system}`;
     return this.http.get<HitterRanking[]>(url);
   }
+  GetPlayersByAdp() {
+    const year = new Date().getFullYear();
+    const url = `${this.playersUrl}/ByAdp`;
+    return this.http.get<Player[]>(url);
+  }
 
   GetPitcherRankings(system: string) {
     const year = new Date().getFullYear();

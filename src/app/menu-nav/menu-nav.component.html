@@ -4,6 +4,8 @@
       <a mat-button [routerLink]="'/teams'" *appCheckPermission="'Admin'"> Teams </a>
       <a mat-button [routerLink]="'/dafldraft'" *appCheckPermission="'Admin'"> Draft </a>
       <a mat-button [routerLink]="'/player-details'"> Player Details </a>
+      <a mat-button [routerLink]="'/available-players'"> Available </a>
+      <a mat-button [routerLink]="'/roster-matrix'"> Matrix </a>
       <a mat-button [routerLink]="'/rankings'" *appCheckPermission="'Admin'"> Rankings </a>
       <button mat-button [matMenuTriggerFor]="menu" *appCheckPermission="'Admin'"> Projections </button>
       <mat-menu #menu="matMenu">

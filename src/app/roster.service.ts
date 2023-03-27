@@ -10,6 +10,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { RosterAddition } from './rosterAddition';
 import { environment } from './../environments/environment';
 import { PlayerMove } from './models/PlayerMove';
+import { HitterMatrix, PitcherMatrix } from './models/Matrix';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json'})
@@ -36,6 +37,16 @@ export class RosterService {
   getRostercounts(): Observable<RosterCounts[]> {
     const url = `${this.rosterUrl}/RosterCounts`;
     return this.http.get<RosterCounts[]>(url);
+  }
+
+  getRosterPitcherMatrix(): Observable<PitcherMatrix[]> {
+    const url = `${this.rosterUrl}/GetPitcherMatrix`;
+    return this.http.get<PitcherMatrix[]>(url);
+  }
+
+  getRosterHitterMatrix(): Observable<HitterMatrix[]> {
+    const url = `${this.rosterUrl}/GetHitterMatrix`;
+    return this.http.get<HitterMatrix[]>(url);
   }
 
   GetTenMostRecentAdditions(): Observable<RosterAddition[]> {

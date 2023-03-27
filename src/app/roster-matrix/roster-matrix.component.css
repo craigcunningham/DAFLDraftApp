@@ -1,0 +1,33 @@
+.teamName {
+  font-size: 125%;
+}
+.mat-cell {
+  border: solid gray;
+  border-top-width: 1px;
+  border-left-width: 1px;
+  border-bottom-width: 0px;
+  border-right-width: 0px;
+}
+.mat-header-cell {
+  border: solid gray;
+  border-top-width: 1px;
+  border-left-width: 1px;
+  border-bottom-width: 0px;
+  border-right-width: 0px;
+  font-size: 125%;
+}
+.mat-table  > tr:last-child > td {
+  border-bottom-width: 1px;
+}
+.mat-table  > tr > td:last-child {
+  border-right-width: 1px;
+}
+.mat-table  > tr > th:last-child {
+  border-right-width: 1px;
+}
+div.centered {
+  margin: auto;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}

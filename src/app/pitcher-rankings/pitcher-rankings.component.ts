@@ -50,9 +50,9 @@ export class PitcherRankingsComponent implements OnInit, AfterViewInit {
       if (filter === 'all') {
         return record.ip >= 0;
       } else if (filter === 'rp') {
-          return record.sv > 0 || record.hld > 0;
+          return (record.sv > 0 || record.hld > 0) && record.ip <= 72;
       } else {
-        return record.sv === 0 || record.hld === 0;
+        return record.sv === 0 || record.hld === 0 || record.ip > 72;
       }
     };
   }

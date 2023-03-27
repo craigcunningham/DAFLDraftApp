@@ -12,6 +12,8 @@ import { MyProtectionListComponent } from './my-protectionlist/my-protectionlist
 import { PlayerDetailComponent } from './player-detail/player-detail.component';
 import { PitcherRankingsComponent } from './pitcher-rankings/pitcher-rankings.component';
 import { ProjectedStandingsComponent } from './projected-standings/projected-standings.component';
+import { RosterMatrixComponent } from './roster-matrix/roster-matrix.component';
+import { AvailablePlayersComponent } from './available-players/available-players.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'dafldraft', pathMatch: 'full' },
@@ -27,6 +29,8 @@ const routes: Routes = [
   { path: 'my-protection-list/:id', component: MyProtectionListComponent },
   { path: 'player-details/:id', component: PlayerDetailComponent },
   { path: 'player-details', component: PlayerDetailComponent },
+  { path: 'roster-matrix', component: RosterMatrixComponent },
+  { path: 'available-players', component: AvailablePlayersComponent },
   { path: 'login/:password', component: LoginComponent },
 ];
 

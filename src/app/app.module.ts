@@ -49,6 +49,9 @@ import { PlayerDetailComponent } from './player-detail/player-detail.component';
 import { PlayerTransactionsComponent } from './player-transactions/player-transactions.component';
 import { PitcherRankingsComponent } from './pitcher-rankings/pitcher-rankings.component';
 import { ProjectedStandingsComponent } from './projected-standings/projected-standings.component';
+import { RosterMatrixComponent } from './roster-matrix/roster-matrix.component';
+import { LastnamePipe } from './pipes/lastname.pipe';
+import { AvailablePlayersComponent } from './available-players/available-players.component';
 
 
 @NgModule({
@@ -73,7 +76,10 @@ import { ProjectedStandingsComponent } from './projected-standings/projected-sta
     PlayerDetailComponent,
     PlayerTransactionsComponent,
     PitcherRankingsComponent,
-    ProjectedStandingsComponent
+    ProjectedStandingsComponent,
+    RosterMatrixComponent,
+    LastnamePipe,
+    AvailablePlayersComponent
   ],
   imports: [
     BrowserModule,
